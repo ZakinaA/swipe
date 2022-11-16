@@ -25,8 +25,7 @@ class Compte
     #[ORM\OneToOne(mappedBy: 'compte', cascade: ['persist', 'remove'])]
     private ?Eleve $eleve = null;
 
-    #[ORM\OneToOne(inversedBy: 'compte', cascade: ['persist', 'remove'])]
-    private ?Professeur $professeur = null;
+
 
     public function getId(): ?int
     {
@@ -101,15 +100,5 @@ class Compte
         return $this;
     }
 
-    public function getProfesseur(): ?Professeur
-    {
-        return $this->professeur;
-    }
 
-    public function setProfesseur(?Professeur $professeur): self
-    {
-        $this->professeur = $professeur;
-
-        return $this;
-    }
 }

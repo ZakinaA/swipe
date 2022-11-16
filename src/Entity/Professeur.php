@@ -36,11 +36,10 @@ class Professeur
     #[ORM\Column(length: 15)]
     private ?string $tel = null;
 
-    #[ORM\OneToOne(mappedBy: 'professeur', cascade: ['persist', 'remove'])]
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Compte $compte = null;
 
-    #[ORM\OneToMany(mappedBy: 'professeur', targetEntity: Cours::class)]
-    private Collection $cours;
+
 
     public function __construct()
     {
@@ -143,48 +142,9 @@ class Professeur
 
     public function setCompte(?Compte $compte): self
     {
-        // unset the owning side of the relation if necessary
-        if ($compte === null && $this->compte !== null) {
-            $this->compte->setProfesseur(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($compte !== null && $compte->getProfesseur() !== $this) {
-            $compte->setProfesseur($this);
-        }
-
         $this->compte = $compte;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Cours>
-     */
-    public function getCours(): Collection
-    {
-        return $this->cours;
-    }
-
-    public function addCour(Cours $cour): self
-    {
-        if (!$this->cours->contains($cour)) {
-            $this->cours->add($cour);
-            $cour->setProfesseur($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCour(Cours $cour): self
-    {
-        if ($this->cours->removeElement($cour)) {
-            // set the owning side to null (unless already changed)
-            if ($cour->getProfesseur() === $this) {
-                $cour->setProfesseur(null);
-            }
-        }
-
-        return $this;
-    }
 }
