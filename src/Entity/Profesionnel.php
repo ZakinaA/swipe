@@ -36,6 +36,9 @@ class Profesionnel
     #[ORM\OneToMany(mappedBy: 'profesionnel', targetEntity: Intervenir::class)]
     private Collection $intervenirs;
 
+    #[ORM\Column(length: 50)]
+    private ?string $ville = null;
+
     public function __construct()
     {
         $this->intervenirs = new ArrayCollection();
@@ -144,6 +147,18 @@ class Profesionnel
                 $intervenir->setProfesionnel(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getVille(): ?string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): self
+    {
+        $this->ville = $ville;
 
         return $this;
     }
