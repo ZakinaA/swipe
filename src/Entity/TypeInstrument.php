@@ -24,9 +24,13 @@ class TypeInstrument
     #[ORM\ManyToOne(inversedBy: 'typeInstruments')]
     private ?ClasseInstrument $classeInstrument = null;
 
+    #[ORM\OneToMany(mappedBy: 'instrument', targetEntity: Cours::class)]
+    private Collection $cours;
+
     public function __construct()
     {
         $this->instruments = new ArrayCollection();
+        $this->cours = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -84,6 +88,36 @@ class TypeInstrument
     public function setClasseInstrument(?ClasseInstrument $classeInstrument): self
     {
         $this->classeInstrument = $classeInstrument;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cours>
+     */
+    public function getCours(): Collection
+    {
+        return $this->cours;
+    }
+
+    public function addCour(Cours $cour): self
+    {
+        if (!$this->cours->contains($cour)) {
+            $this->cours->add($cour);
+            $cour->setInstrument($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCour(Cours $cour): self
+    {
+        if ($this->cours->removeElement($cour)) {
+            // set the owning side to null (unless already changed)
+            if ($cour->getInstrument() === $this) {
+                $cour->setInstrument(null);
+            }
+        }
 
         return $this;
     }

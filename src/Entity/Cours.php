@@ -28,14 +28,15 @@ class Cours
     #[ORM\Column]
     private ?int $nbPlaces = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $dateCours = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $heureDebut = null;
+    #[ORM\Column]
+    private ?string $dateCours = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
-    private ?\DateTimeInterface $heureFin = null;
+    #[ORM\Column]
+    private ?string $heureDebut = null;         
+
+    #[ORM\Column]
+    private ?string $heureFin = null;     
 
     #[ORM\OneToMany(mappedBy: 'Cours', targetEntity: Inscription::class)]
     private Collection $inscriptions;
@@ -48,7 +49,8 @@ class Cours
     private ?TypeCours $typeCours = null;
 
     #[ORM\ManyToOne(inversedBy: 'cours')]
-    private ?Instrument $instrument = null;
+    private ?typeInstrument $instrument = null;
+
 
     public function __construct()
     {
@@ -110,38 +112,38 @@ class Cours
         return $this;
     }
 
-    public function getDateCours(): ?\DateTimeInterface
+    public function getDatesCours(): ?string
     {
-        return $this->dateCours;
+        return $this->DatesCours;
     }
 
-    public function setDateCours(\DateTimeInterface $dateCours): self
+    public function setDatesCours(string $HeureDatesCours): self
     {
-        $this->dateCours = $dateCours;
+        $this->HeureDatesCours = $HeureDatesCours;
 
         return $this;
     }
 
-    public function getHeureDebut(): ?\DateTimeInterface
+    public function getHeureDebut(): ?string
     {
-        return $this->heureDebut;
+        return $this->HeureDebut;
     }
 
-    public function setHeureDebut(\DateTimeInterface $heureDebut): self
+    public function setHeureDebut(string $HeureDebut): self
     {
-        $this->heureDebut = $heureDebut;
+        $this->HeureDebut = $HeureDebut;
 
         return $this;
     }
 
-    public function getHeureFin(): ?\DateTimeInterface
+    public function getHeureFin(): ?string
     {
-        return $this->heureFin;
+        return $this->HeureFin;
     }
 
-    public function setHeureFin(\DateTimeInterface $heureFin): self
+    public function setHeureFin(string $HeureFin): self
     {
-        $this->heureFin = $heureFin;
+        $this->HeureFin = $HeureFin;
 
         return $this;
     }
@@ -200,17 +202,19 @@ class Cours
         return $this;
     }
 
-    public function getInstrument(): ?Instrument
+    public function getInstrument(): ?typeInstrument
     {
         return $this->instrument;
     }
 
-    public function setInstrument(?Instrument $instrument): self
+    public function setInstrument(?typeInstrument $instrument): self
     {
         $this->instrument = $instrument;
 
         return $this;
     }
+
+
 
 
 }
