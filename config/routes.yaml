@@ -5,3 +5,7 @@ controllers:
 route_accueil:
     path: /accueil
     controller: App\Controller\UtilisateurController::index
+
+instrumentLister:
+    path: /instrument/lister
+    controller: App\Controller\InstrumentController::listerInstrument
