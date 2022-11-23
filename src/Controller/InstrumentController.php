@@ -29,4 +29,23 @@ class InstrumentController extends AbstractController
     
 }
 
+public function consulterInstrument(ManagerRegistry $doctrine, int $id){
+		
+
+    $instrument = $doctrine->getRepository(Instrument::class)->find($id);
+
+    if (!$instrument) {
+        throw $this->createNotFoundException(
+        'Aucun instrument trouvé avec le numéro '.$id
+        );
+    }
+
+    return $this->render('instrument/consulter.html.twig', [
+        'instrument' => $instrument,]);
+}
+
+
+
+
+
 }

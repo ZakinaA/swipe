@@ -23,7 +23,8 @@
 
 			<tr>
 			<!--Id-->
-				<td>{{ i.intitule }}</a></td>
+				<td><a href="{{ path('instrumentConsulter', { 'id': i.id }) }}">{{ i.intitule }}</a></td>
+				<td></a></td>
 				<td>{{ i.prixAchat }}</a></td>
 				<td>{{ i.dateAchat|date('d/m/Y') }}</td>
 			<!--Prix achat

@@ -6,6 +6,16 @@ route_accueil:
     path: /accueil
     controller: App\Controller\UtilisateurController::index
 
+
+
+
+
+# route instrument
+
 instrumentLister:
     path: /instrument/lister
     controller: App\Controller\InstrumentController::listerInstrument
+
+instrumentConsulter:
+    path: /instrument/consulter/{id}
+    controller: App\Controller\InstrumentController::consulterInstrument
