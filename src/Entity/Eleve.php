@@ -73,12 +73,12 @@ class Eleve
         return $this;
     }
 
-    public function getDateNaiss(): ?\DateTimeInterface
+    public function getDate_Naiss(): ?\DateTimeInterface
     {
         return $this->date_naiss;
     }
 
-    public function setDateNaiss(?\DateTimeInterface $date_naiss): self
+    public function setDate_Naiss(?\DateTimeInterface $date_naiss): self
     {
         $this->date_naiss = $date_naiss;
 

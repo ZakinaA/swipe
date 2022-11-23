@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+    </head>
+    <body>       
+		<h5>PAGE DE CONSULTATION D'UN ELEVE</h5>
+ <p>
+  <table ><strong> Eleve :
+    <tr><td>Id : </td><td>{{eleve.id}} </td></tr>
+	<tr><td>Nom : </td><td>{{eleve.nom}}</td>
+    <tr><td>Prénom : </td><td>{{eleve.prenom}}</td></tr></tr>
+	<tr><td>Date de naissance : </td><td>{{eleve.date_naiss|date("d/m/Y")}}</td></tr>
+   
+    <tr><td> <strong>Responsable : </td><td>{{eleve.responsable.nom}} </td></tr>
+    <tr><td>{{eleve.responsable.prenom}} </td></tr>
+    <tr><td>{{eleve.responsable.ville}} </td></tr>
+    <tr><td>{{eleve.responsable.rue}} </td></tr>
+    <tr><td>{{eleve.responsable.codep}} </td></tr>
+    <tr><td>{{eleve.responsable.email}} </td></tr>
+    <tr><td>{{eleve.responsable.tel}} </td></tr>
+    <tr><td>{{eleve.responsable.tranche.quotient}} </td></tr>
+
+
+    <tr><td><strong>Cours : </td>     	
+           {% for c in eleve.inscriptions %}
+	        <tr>
+                <td>{{ c.cours.libelle}}</td>
+		    	<td>Nombre de paiements :{{ c.nombredepaiements}}</td></tr>
+	         {% endfor %}</tr>
+
+        <tr><td><strong>Instrument emprunter : </td>     	
+           {% for i in eleve.emprunters %}
+	        <tr>
+                <td>{{ i.instrument.intitule}}</td>
+                <td>Date Début :{{ i.datedebut|date("d/m/Y")}}</td>
+                <td>Date Retour :{{ i.dateretour|date("d/m/Y")}}</td>
+	         {% endfor %}</tr>
+
+</table>
+</body>
+</html>
