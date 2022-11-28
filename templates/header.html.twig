@@ -14,6 +14,9 @@
     <title>Accueil</title>
 </head>
 <style>
+  body{
+    color:white;
+  }
   .logo{
       width: 60px;
   }
@@ -21,7 +24,6 @@
       font-size: 35px;
       text-align: center;
   }
-
   .corps{
       display: block;
       margin: 3% 0;
@@ -29,12 +31,11 @@
       width: auto;
       height: auto;
   }
-
   .emploi-temps{
       margin: 0 auto;
       width: 90%;
+      width:fit-content;
   }
-
 </style>
 <body style="background: linear-gradient(#AD3D3D , #10193A); width: 100%; height: auto;">
     <header style="display: block; width: 100%;">
@@ -42,7 +43,7 @@
             <div class="px-3 py-2  text-white">
                 <div class="container">
                   <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="/" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
                       <img class="logo" src="http://localhost/swipe/public/img/logo-swipe.png" alt="e-music" style="width: 60px;">
                     </a>
           
@@ -54,13 +55,13 @@
                         </a>
                       </li>
                       <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="{{ path('instrumentListerType') }}" class="nav-link text-white">
                           <i class="fa-solid fa-guitar bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer2"></use></i>
                           Instruments
                         </a>
                       </li>
                       <li>
-                        <a href="#" class="nav-link text-white">
+                        <a href="{{ path('coursLister') }}" class="nav-link text-white">
                           <i class="fa-solid fa-music bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Cours
                         </a>
