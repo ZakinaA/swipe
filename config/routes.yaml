@@ -13,3 +13,20 @@ route_Eleve:
 EleveConsulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulterEleve
+
+#Route Instrument
+
+instrumentListerType:
+    path: /instrument/listerType
+    controller: App\Controller\InstrumentController::listerTypeInstrument
+
+instrumentConsulter:
+    path: /instrument/consulter/{id}
+    controller: App\Controller\InstrumentController::consulterInstrument
+
+
+#Cours
+
+cours_lister:
+    path: /cours/lister
+    controller: App\Controller\CoursController::lister
