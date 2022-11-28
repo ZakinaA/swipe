@@ -12,6 +12,18 @@ cours_lister:
 
 
 
-ajouterCompte:
-    path: /compte/inscription
-    controller: App\Controller\CompteController::ajouter
+
+
+
+app_login:
+    path: /login/index
+    controller: App\Controller\LoginController::index
+
+Inscription:
+    path: /register/inscription
+    controller: App\Controller\RegistrationController::register
+
+    # config/routes.yaml
+app_logout:
+    path: /logout
+    methods: GET
