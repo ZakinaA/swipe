@@ -25,6 +25,9 @@ class Compte
     #[ORM\OneToOne(mappedBy: 'compte', cascade: ['persist', 'remove'])]
     private ?Eleve $eleve = null;
 
+    #[ORM\ManyToOne(inversedBy: 'comptes')]
+    private ?Role $role = null;
+
 
 
     public function getId(): ?int
@@ -96,6 +99,18 @@ class Compte
         }
 
         $this->eleve = $eleve;
+
+        return $this;
+    }
+
+    public function getRole(): ?Role
+    {
+        return $this->role;
+    }
+
+    public function setRole(?Role $role): self
+    {
+        $this->role = $role;
 
         return $this;
     }

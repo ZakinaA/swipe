@@ -9,3 +9,9 @@ route_accueil:
 cours_lister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
+
+
+
+ajouterCompte:
+    path: /compte/inscription
+    controller: App\Controller\CompteController::ajouter
