@@ -44,3 +44,10 @@ classeInstrumentLister:
 coursLister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
+
+
+#Professeur :
+
+ProfesseurConsulter:
+    path: /professeur/consulter/{id}
+    controller: App\Controller\ProfesseurController::consulterProfesseur
