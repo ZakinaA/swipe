@@ -14,10 +14,6 @@
             <th scope="col" colspan="2">Elève</th>
         </tr>
         <tr>
-            <td>Id : </td>
-            <td>{{eleve.id}} </td>
-        </tr>
-        <tr>
 	        <td>Nom : </td>
             <td>{{eleve.nom}}</td>
         </tr>
@@ -38,10 +34,6 @@
         <tr>
             <th scope="col">Informations</th>
             <th scope="col">Responsable</th>
-        </tr>
-        <tr>
-            <td>Id : </td>
-            <td>{{eleve.responsable.id}} </td>
         </tr>
         <tr>
 	        <td>Nom : </td>
@@ -81,7 +73,6 @@
  <p>
     <table class="table table-bordered text-white"style="width:auto">
         <tr>
-            <th scope="col">Id du cours</th>
             <th scope="col">Cours</th>
             <th scope="col">Jour</th>
             <th scope="col">Crénaux horaire</th>
@@ -89,7 +80,6 @@
         </tr>
       {% for c in eleve.inscriptions %}
         <tr>
-            <td>{{ c.cours.id}}</td>
             <td>{{ c.cours.libelle}}</td>
             <td>{{ c.cours.dateCours}}</td>
             <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
