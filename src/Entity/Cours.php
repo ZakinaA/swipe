@@ -117,9 +117,9 @@ class Cours
         return $this->dateCours;
     }
 
-    public function setDateCours(string $DateCours): self
+    public function setDateCours(string $dateCours): self
     {
-        $this->dateCours = $DateCours;
+        $this->dateCours = $dateCours;
 
         return $this;
     }
@@ -131,8 +131,8 @@ class Cours
 
     public function setHeureDebut(string $heureDebut): self
     {
-        $this->heureDebut = $heureDebut;
-
+        $this->heureDebut = $HeureDebut;
+        
         return $this;
     }
 

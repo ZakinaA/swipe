@@ -6,6 +6,13 @@ route_accueil:
     path: /accueil
     controller: App\Controller\UtilisateurController::index
 
+route_Eleve:
+    path: /eleve/
+    controller: App\Controller\EleveController::index
+
+EleveConsulter:
+    path: /eleve/consulter/{id}
+    controller: App\Controller\EleveController::consulterEleve
 
 #Route Instrument
 
@@ -23,4 +30,3 @@ instrumentConsulter:
 cours_lister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
-
