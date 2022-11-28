@@ -27,6 +27,6 @@ instrumentConsulter:
 
 #Cours
 
-cours_lister:
+coursLister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
