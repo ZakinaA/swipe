@@ -6,63 +6,29 @@
         <table class="table table-bordered text-white">
             <thead>
               <tr>
-                <th scope="col">Heure</th>
-                <th scope="col" colspan="2">Lundi</th>
-                <th scope="col" colspan="2">Mardi</th>
-                <th scope="col" colspan="2">Mercredi</th>
-                <th scope="col" colspan="2">Jeudi</th>
-                <th scope="col" colspan="2">Vendredi</th>
-                <th scope="col" colspan="2">Samedi</th>
+                <th scope="col">Jour</th>
+                <th scope="col">Heure Début</th>
+                <th scope="col">Heure Fin</th>
+                <th scope="col">Cours</th>
+                <th scope="col">Professeur</th>
+                <th scope="col">Type cours</th>
               </tr>
             </thead>
             <tbody>
+              {% for c in pCours %}
                 <tr>
-                    <td></td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                  </tr>
-                <tr>
-                    <td>15H</td>
-                    <td>Professeur</td>
-                    <td>Guitare</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
+                    <td>{{c.dateCours}}</td>
+                    <td>{{c.heureDebut}}</td>
+                    <td>{{c.heureFin}}</td>
+                    <td>{{c.libelle}}</td>
+                    <td>{{c.professeur.nom}}</td>
+                    <td>{{c.typeCours.libelle}}</td>
                 </tr>
+              {% else %}
                 <tr>
-                    <td>16H</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
-                    <td>Professeur</td>
-                    <td>Instrument</td>
+                <td>Aucun cours n'a été trouvé.</td>
                 </tr>
-                <tr>
-                </tr>
+              {% endfor %}
             </tbody>
         </table>
       </div>

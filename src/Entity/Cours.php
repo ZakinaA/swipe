@@ -112,38 +112,38 @@ class Cours
         return $this;
     }
 
-    public function getDatesCours(): ?string
+    public function getDateCours(): ?string
     {
-        return $this->DatesCours;
+        return $this->dateCours;
     }
 
-    public function setDatesCours(string $HeureDatesCours): self
+    public function setDateCours(string $DateCours): self
     {
-        $this->HeureDatesCours = $HeureDatesCours;
+        $this->dateCours = $DateCours;
 
         return $this;
     }
 
     public function getHeureDebut(): ?string
     {
-        return $this->HeureDebut;
+        return $this->heureDebut;
     }
 
-    public function setHeureDebut(string $HeureDebut): self
+    public function setHeureDebut(string $heureDebut): self
     {
-        $this->HeureDebut = $HeureDebut;
+        $this->heureDebut = $heureDebut;
 
         return $this;
     }
 
     public function getHeureFin(): ?string
     {
-        return $this->HeureFin;
+        return $this->heureFin;
     }
 
     public function setHeureFin(string $HeureFin): self
     {
-        $this->HeureFin = $HeureFin;
+        $this->heureFin = $HeureFin;
 
         return $this;
     }
