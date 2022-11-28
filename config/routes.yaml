@@ -46,8 +46,21 @@ coursLister:
     controller: App\Controller\CoursController::lister
 
 
-#Professeur :
+app_login:
+    path: /login/index
+    controller: App\Controller\LoginController::index
 
+Inscription:
+    path: /register/inscription
+    controller: App\Controller\RegistrationController::register
+
+    # config/routes.yaml
+app_logout:
+    path: /logout
+    methods: GET
+
+#Professeur :
 ProfesseurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
+

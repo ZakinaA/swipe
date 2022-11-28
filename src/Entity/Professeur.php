@@ -39,7 +39,9 @@ class Professeur
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Compte $compte = null;
 
-    #[ORM\OneToMany(mappedBy: 'cours', targetEntity: Cours::class)]
+
+    #[ORM\OneToMany(mappedBy: 'pro', targetEntity: Cours::class)]
+
     private Collection $cours;
 
 
@@ -162,7 +164,11 @@ class Professeur
     {
         if (!$this->cours->contains($cour)) {
             $this->cours->add($cour);
+
+            $cour->setPro($this);
+
             $cour->setCours($this);
+
         }
 
         return $this;
@@ -172,8 +178,9 @@ class Professeur
     {
         if ($this->cours->removeElement($cour)) {
             // set the owning side to null (unless already changed)
-            if ($cour->getCours() === $this) {
-                $cour->setCours(null);
+            if ($cour->getPro() === $this) {
+                $cour->setPro(null);
+
             }
         }
 
