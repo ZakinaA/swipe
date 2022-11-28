@@ -214,6 +214,18 @@ class Cours
         return $this;
     }
 
+    public function getPro(): ?Professeur
+    {
+        return $this->pro;
+    }
+
+    public function setPro(?Professeur $pro): self
+    {
+        $this->pro = $pro;
+
+        return $this;
+    }
+
 
 
 
