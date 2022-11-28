@@ -8,3 +8,5 @@ Maquettes IHM sur Figma : https://www.figma.com/file/c2lEs97E0oKDX7QKlIFop7/SWIP
 ADM_SWIPE / mpSwipe  - mysql
 
 DATABASE_URL="mysql://ADM_SWIPE:mpSwipe@172.20.177.77:3306/SWIPE"
+
+composer require symfony/security-bundle
