@@ -2,9 +2,13 @@
 
 {% block body %}  
  <div class="emploi-temps">
+ <div class="tableau">
 <h5 style="color:white;">PAGE DE CONSULTATION D'UN ELEVE</h5>
+ <center>
+<h6 style="color:white; width:fit-content;">MES INFORMATIONS</h6>
  <p>
-    <table class="table table-bordered text-white">
+
+    <table class="table table-bordered text-white "style="width:auto">
         <tr>
             <th scope="col">Informations</th>
             <th scope="col" colspan="2">Elève</th>
@@ -28,12 +32,12 @@
     </table>
 
 
-    <h6 style="color:white;">MON RESPONSABLE</h6>
+    <h6 style="color:white; width:fit-content;">MON RESPONSABLE</h6>
      <p>
-    <table class="table table-bordered text-white">
+    <table class="table table-bordered text-white" style="width:auto">
         <tr>
             <th scope="col">Informations</th>
-            <th scope="col" colspan="2">Responsable</th>
+            <th scope="col">Responsable</th>
         </tr>
         <tr>
             <td>Id : </td>
@@ -73,9 +77,9 @@
         </tr>
     </table>
 
-<h6 style="color:white;">MES COURS</h6>
+<h6 style="color:white; width:fit-content">MES COURS</h6>
  <p>
-    <table class="table table-bordered text-white">
+    <table class="table table-bordered text-white"style="width:auto">
         <tr>
             <th scope="col">Id du cours</th>
             <th scope="col">Cours</th>
@@ -94,9 +98,9 @@
 	     {% endfor %}
     </table>
 
-    <h6 style="color:white;">MES EMPRUNTS</h6>
+    <h6 style="color:white; width:fit-content">MES EMPRUNTS</h6>
     <p>
-    <table class="table table-bordered text-white">
+    <table class="table table-bordered text-white"style="width:auto">
         <tr>
             <th scope="col">Id de l'instrument</th>
             <th scope="col">Instrument</th>
@@ -115,5 +119,7 @@
 	     {% endfor %}
     </table>
  </div>
+ </div>
+ </center>
 {% endblock %}
 {{ block("footer", "footer.html.twig") }}
