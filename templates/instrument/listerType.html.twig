@@ -12,7 +12,7 @@
 			{% for i in pInstruments %}
 
 			<tr>
-				<td><a href="{{ path('instrumentConsulter', { 'id': i.id }) }}">{{ i.libelle }}</a></td>
+				<td><a href="{{ path('instrumentConsulterType', { 'id': i.id }) }}">{{ i.libelle }}</a></td>
 				<td>{{ i.classeinstrument.libelle }}</a></td>
 				
 	{% else %}

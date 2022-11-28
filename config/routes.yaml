@@ -13,6 +13,10 @@ instrumentListerType:
     path: /instrument/listerType
     controller: App\Controller\InstrumentController::listerTypeInstrument
 
+instrumentConsulterType:
+    path: /instrument/consulterType/{id}
+    controller: App\Controller\InstrumentController::consulterTypeInstrument
+
 instrumentConsulter:
     path: /instrument/consulter/{id}
     controller: App\Controller\InstrumentController::consulterInstrument

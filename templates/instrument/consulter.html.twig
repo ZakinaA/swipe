@@ -7,8 +7,8 @@
 		<h5>PAGE DE CONSULTATION D'UN INSTRUMENT</h5>
  <p>
   <table >
-     <tr><td>Id: </td><td>{{instrument.id}} </td></tr>
-	<tr><td>Intitule: </td><td>{{instrument.intitule}}</td>
+     <tr><td>Id: </td><td>{{typeinstrument.id}} </td></tr>
+	<tr><td>Intitule: </td><td>{{typeinstrument.libelle}}</td>
 	<td  rowspan="8" class="imgInst">
 					{% set photo = 'img/instrument/'~ instrument.id ~'.jpg' %}
 					<span class="zoom"><img src="{{ asset(photo | trans )}}" width=300px title="{{ instrument.intitule }}" alt="{{ instrument.intitule }}"/></span></td></tr> </td>
