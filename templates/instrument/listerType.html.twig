@@ -1,0 +1,26 @@
+{{ block('header', 'header.html.twig')}}
+{% block body %}
+		<h5>TYPES D'INSTRUMENTS</h5>
+		<div class="emploi-temps">
+			<table class='table table-bordered text-white'>
+
+			<tr>
+				<td>Libelle</td>
+				<td>Classe d'Instrument</td>
+			</tr>
+
+			{% for i in pInstruments %}
+
+			<tr>
+				<td><a href="{{ path('instrumentConsulterType', { 'id': i.id }) }}">{{ i.libelle }}</a></td>
+				<td><a href="{{ path('instrumentListerTypeByID', { 'id': i.classeInstrument.id }) }}">{{ i.classeinstrument.libelle }}</a></td>
+				
+	{% else %}
+			<tr>
+				<td>Aucun instrument n'a été trouvé.</td>
+			</tr>
+	{% endfor %}
+</table>
+</div>
+{% endblock %}
+{{ block('footer', 'footer.html.twig') }}

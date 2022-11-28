@@ -51,7 +51,6 @@ class Cours
     #[ORM\ManyToOne(inversedBy: 'cours')]
     private ?typeInstrument $instrument = null;
 
-
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -112,38 +111,38 @@ class Cours
         return $this;
     }
 
-    public function getDatesCours(): ?string
+    public function getDateCours(): ?string
     {
-        return $this->DatesCours;
+        return $this->dateCours;
     }
 
-    public function setDatesCours(string $HeureDatesCours): self
+    public function setDateCours(string $dateCours): self
     {
-        $this->HeureDatesCours = $HeureDatesCours;
+        $this->dateCours = $dateCours;
 
         return $this;
     }
 
     public function getHeureDebut(): ?string
     {
-        return $this->HeureDebut;
+        return $this->heureDebut;
     }
 
-    public function setHeureDebut(string $HeureDebut): self
+    public function setHeureDebut(string $heureDebut): self
     {
-        $this->HeureDebut = $HeureDebut;
-
+        $this->heureDebut = $HeureDebut;
+        
         return $this;
     }
 
     public function getHeureFin(): ?string
     {
-        return $this->HeureFin;
+        return $this->heureFin;
     }
 
     public function setHeureFin(string $HeureFin): self
     {
-        $this->HeureFin = $HeureFin;
+        $this->heureFin = $HeureFin;
 
         return $this;
     }
@@ -214,6 +213,7 @@ class Cours
         return $this;
     }
 
+
     public function getPro(): ?Professeur
     {
         return $this->pro;
@@ -222,6 +222,7 @@ class Cours
     public function setPro(?Professeur $pro): self
     {
         $this->pro = $pro;
+
 
         return $this;
     }

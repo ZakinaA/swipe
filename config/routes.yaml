@@ -6,13 +6,44 @@ route_accueil:
     path: /accueil
     controller: App\Controller\UtilisateurController::index
 
-cours_lister:
+route_Eleve:
+    path: /eleve/
+    controller: App\Controller\EleveController::index
+
+EleveConsulter:
+    path: /eleve/consulter/{id}
+    controller: App\Controller\EleveController::consulterEleve
+
+#Route Instrument
+
+instrumentListerType:
+    path: /instrument/listerType
+    controller: App\Controller\InstrumentController::listerTypeInstrument
+
+instrumentListerTypeByID:
+    path: /instrument/listerType/{id}
+    controller: App\Controller\InstrumentController::instrumentListerTypeByID
+
+instrumentConsulterType:
+    path: /instrument/consulterType/{id}
+    controller: App\Controller\InstrumentController::consulterTypeInstrument
+
+instrumentConsulter:
+    path: /instrument/consulter/{id}
+    controller: App\Controller\InstrumentController::consulterInstrument
+
+
+#Classe Instrument
+classeInstrumentLister:
+    path: /classeInstrument/lister
+    controller: App\Controller\ClasseInstrumentController::lister
+
+
+#Cours
+
+coursLister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
-
-
-
-
 
 
 app_login:
@@ -27,3 +58,9 @@ Inscription:
 app_logout:
     path: /logout
     methods: GET
+
+#Professeur :
+ProfesseurConsulter:
+    path: /professeur/consulter/{id}
+    controller: App\Controller\ProfesseurController::consulterProfesseur
+
