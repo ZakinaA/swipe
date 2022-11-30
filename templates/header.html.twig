@@ -37,6 +37,11 @@
       width: 90%;
       width:fit-content;
   }
+
+.user{
+      font-weight: bold;
+  }
+
   footer {
   position: fixed;
   left: 0;
@@ -45,6 +50,7 @@
   color: white;
   text-align: center;
 }
+
 </style>
 <body style="background: linear-gradient(#AD3D3D , #10193A); width: 100%;">
     <header style="display: block; width: 100%;">
@@ -75,6 +81,8 @@
                           Cours
                         </a>
                       </li>
+                     {% if app.user.id is not defined %}
+
                       <li>
                         <a href="{{ path('app_login') }}" class="nav-link text-white">
                           <i class="fa-solid fa-user bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
@@ -87,7 +95,24 @@
                           Créer un compte
                         </a>
                       </li>
+
+                      {% else %}
+
+                      <li>
+                        <a href="{{path('app_logout')}}" class="nav-link text-white">
+                          <i class="fa-regular fa-user bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
+                          Se Déconnecter
+                        </a>
+                      </li>
+                        <li>
+                      </li>
+                      
                     </ul>
+                       
+                  <h4 class="user"> {{app.user.mail}} </h4>
+                        
+                  {% endif %}
+                  
                   </div>
                 </div>
               </div>
