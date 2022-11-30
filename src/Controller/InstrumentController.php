@@ -63,10 +63,27 @@ public function consulterInstrument(ManagerRegistry $doctrine, int $id){
         'instrument' => $instrument,]);
 }
 
+public function consulterMaintenance(ManagerRegistry $doctrine, int $id){
+
+    $instrument= $doctrine->getRepository(Instrument::class)->find($id);
+
+    if (!$instrument) {
+        throw $this->createNotFoundException(
+        'Aucun instrument trouvé avec le numéro '.$id
+        );
+    }
+
+    //return new Response('Instrument : '.$Instrument->getIntitule());
+    return $this->render('instrument/consulterMaintenance.html.twig', [
+        'instrument' => $instrument,
+        ]);
+}
+
 public function instrumentListerTypeByID(ManagerRegistry $doctrine, int $id){
 		
 
     $instrument = $doctrine->getRepository(TypeInstrument::class)->findByClasseInstrument($id);
+
 
     if (!$instrument) {
         throw $this->createNotFoundException(

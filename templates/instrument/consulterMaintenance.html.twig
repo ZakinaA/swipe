@@ -1,0 +1,31 @@
+{{ block("header", "header.html.twig") }}
+
+{% block body %}  
+      <h5>MAINTENANCE DE L'INSTRUMENT : {{instrument.intitule}}</h5>
+      <div class="emploi-temps">
+        <table class="table table-bordered text-white">
+            <thead>
+              <tr>
+                <th scope="col">Date</th>
+                <th scope="col">Prix</th>
+                <th scope="col">Professionnel</th>
+              </tr>
+            </thead>
+            <tbody>
+
+                <tr>
+                    {% for i in instrument.intervenirs %}
+                    <td>du {{i.dateDebutIntervention|date("d/m/Y")}} au {{i.dateFinIntervention|date("d/m/Y")}}</td>
+                    <td>{{i.prix}}</td>
+                    <td>{{i.profesionnel.nom}}</td>
+                </tr>
+              {% else %}
+                <tr>
+                <td>Aucune intervention n'a été trouvé.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+{% endblock %}
+{{ block("footer", "footer.html.twig") }}
