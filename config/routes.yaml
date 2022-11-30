@@ -13,3 +13,5 @@ route_Eleve:
 EleveConsulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulterEleve
+
+test
