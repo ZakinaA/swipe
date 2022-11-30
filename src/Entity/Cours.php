@@ -129,10 +129,10 @@ class Cours
         return $this->heureDebut;
     }
 
-    public function setHeureDebut(string $HeureDebut): self
+    public function setHeureDebut(string $heureDebut): self
     {
         $this->heureDebut = $HeureDebut;
-
+        
         return $this;
     }
 
