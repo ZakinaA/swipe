@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\TypeInstrument;
 use App\Entity\Instrument;
+use App\Entity\Cours;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -62,7 +63,22 @@ public function consulterInstrument(ManagerRegistry $doctrine, int $id){
         'instrument' => $instrument,]);
 }
 
+public function consulterMaintenance(ManagerRegistry $doctrine, int $id){
 
+    $instrument= $doctrine->getRepository(Instrument::class)->find($id);
+    $cours= $doctrine->getRepository(Cours::class)->findAll();
+
+    if (!$instrument) {
+        throw $this->createNotFoundException(
+        'Aucun instrument trouvé avec le numéro '.$id
+        );
+    }
+
+    //return new Response('Instrument : '.$Instrument->getIntitule());
+    return $this->render('instrument/consulterMaintenance.html.twig', [
+        'instrument' => $instrument,
+        ]);
+}
 
 
 
