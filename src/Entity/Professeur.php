@@ -40,6 +40,11 @@ class Professeur
     private ?Compte $compte = null;
 
 
+    #[ORM\OneToMany(mappedBy: 'pro', targetEntity: Cours::class)]
+
+    private Collection $cours;
+
+
 
     public function __construct()
     {
@@ -143,6 +148,41 @@ class Professeur
     public function setCompte(?Compte $compte): self
     {
         $this->compte = $compte;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Cours>
+     */
+    public function getCours(): Collection
+    {
+        return $this->cours;
+    }
+
+    public function addCour(Cours $cour): self
+    {
+        if (!$this->cours->contains($cour)) {
+            $this->cours->add($cour);
+
+            $cour->setPro($this);
+
+            $cour->setCours($this);
+
+        }
+
+        return $this;
+    }
+
+    public function removeCour(Cours $cour): self
+    {
+        if ($this->cours->removeElement($cour)) {
+            // set the owning side to null (unless already changed)
+            if ($cour->getPro() === $this) {
+                $cour->setPro(null);
+
+            }
+        }
 
         return $this;
     }

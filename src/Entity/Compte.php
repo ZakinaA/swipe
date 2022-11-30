@@ -4,28 +4,30 @@ namespace App\Entity;
 
 use App\Repository\CompteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: CompteRepository::class)]
-class Compte
+#[UniqueEntity(fields: ['mail'], message: 'There is already an account with this mail')]
+class Compte implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 50)]
+    #[ORM\Column(length: 180, unique: true)]
     private ?string $mail = null;
 
-    #[ORM\Column(length: 50)]
-    private ?string $mdp = null;
+    #[ORM\Column]
+    private array $roles = [];
 
-    #[ORM\OneToOne(mappedBy: 'compte', cascade: ['persist', 'remove'])]
-    private ?Responsable $responsable = null;
-
-    #[ORM\OneToOne(mappedBy: 'compte', cascade: ['persist', 'remove'])]
-    private ?Eleve $eleve = null;
-
-
+    /**
+     * @var string The hashed password
+     */
+    #[ORM\Column]
+    private ?string $password = null;
 
     public function getId(): ?int
     {
@@ -44,61 +46,56 @@ class Compte
         return $this;
     }
 
-    public function getMdp(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->mdp;
+        return (string) $this->mail;
     }
 
-    public function setMdp(string $mdp): self
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
     {
-        $this->mdp = $mdp;
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getResponsable(): ?Responsable
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->responsable;
+        return $this->password;
     }
 
-    public function setResponsable(?Responsable $responsable): self
+    public function setPassword(string $password): self
     {
-        // unset the owning side of the relation if necessary
-        if ($responsable === null && $this->responsable !== null) {
-            $this->responsable->setCompte(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($responsable !== null && $responsable->getCompte() !== $this) {
-            $responsable->setCompte($this);
-        }
-
-        $this->responsable = $responsable;
+        $this->password = $password;
 
         return $this;
     }
 
-    public function getEleve(): ?Eleve
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
     {
-        return $this->eleve;
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
-
-    public function setEleve(?Eleve $eleve): self
-    {
-        // unset the owning side of the relation if necessary
-        if ($eleve === null && $this->eleve !== null) {
-            $this->eleve->setCompte(null);
-        }
-
-        // set the owning side of the relation if necessary
-        if ($eleve !== null && $eleve->getCompte() !== $this) {
-            $eleve->setCompte($this);
-        }
-
-        $this->eleve = $eleve;
-
-        return $this;
-    }
-
-
 }
