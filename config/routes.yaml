@@ -10,6 +10,10 @@ mentionsLegales:
     path: /mentionsLegales
     controller: App\Controller\EleveController::ML
 
+politiqueCo:
+    path: /politiqueDeConfidentialite
+    controller: App\Controller\EleveController::PC
+
 #Eleve
 
 route_Eleve:
