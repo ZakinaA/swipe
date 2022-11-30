@@ -6,6 +6,12 @@ route_accueil:
     path: /accueil
     controller: App\Controller\UtilisateurController::index
 
+mentionsLegales:
+    path: /mentionsLegales
+    controller: App\Controller\EleveController::ML
+
+#Eleve
+
 route_Eleve:
     path: /eleve/
     controller: App\Controller\EleveController::index
@@ -14,11 +20,16 @@ EleveConsulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulterEleve
 
+
 #Route Instrument
 
 instrumentListerType:
     path: /instrument/listerType
     controller: App\Controller\InstrumentController::listerTypeInstrument
+
+instrumentListerTypeByID:
+    path: /instrument/listerType/{id}
+    controller: App\Controller\InstrumentController::instrumentListerTypeByID
 
 instrumentConsulterType:
     path: /instrument/consulterType/{id}
@@ -33,6 +44,12 @@ instrumentConsulterMaintenance:
     controller: App\Controller\InstrumentController::consulterMaintenance
 
 
+#Classe Instrument
+classeInstrumentLister:
+    path: /classeInstrument/lister
+    controller: App\Controller\ClasseInstrumentController::lister
+
+
 #Cours
 
 coursLister:
@@ -40,8 +57,22 @@ coursLister:
     controller: App\Controller\CoursController::lister
 
 
-#Professeur :
 
+app_login:
+    path: /login/index
+    controller: App\Controller\LoginController::index
+
+Inscription:
+    path: /register/inscription
+    controller: App\Controller\RegistrationController::register
+
+    # config/routes.yaml
+app_logout:
+    path: /logout
+    methods: GET
+
+#Professeur :
 ProfesseurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
+

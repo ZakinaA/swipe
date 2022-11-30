@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\TypeInstrument;
 use App\Entity\Instrument;
-use App\Entity\Cours;
+use App\Entity\ClasseInstrument;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -66,7 +66,6 @@ public function consulterInstrument(ManagerRegistry $doctrine, int $id){
 public function consulterMaintenance(ManagerRegistry $doctrine, int $id){
 
     $instrument= $doctrine->getRepository(Instrument::class)->find($id);
-    $cours= $doctrine->getRepository(Cours::class)->findAll();
 
     if (!$instrument) {
         throw $this->createNotFoundException(
@@ -80,6 +79,19 @@ public function consulterMaintenance(ManagerRegistry $doctrine, int $id){
         ]);
 }
 
+public function instrumentListerTypeByID(ManagerRegistry $doctrine, int $id){
+		
+
+    $instrument = $doctrine->getRepository(TypeInstrument::class)->findByClasseInstrument($id);
 
 
+    if (!$instrument) {
+        throw $this->createNotFoundException(
+        'Aucun instrument trouvé avec le numéro '.$id
+        );
+    }
+
+    return $this->render('instrument/listerType.html.twig', [
+        'pInstruments' => $instrument,]);
+}
 }

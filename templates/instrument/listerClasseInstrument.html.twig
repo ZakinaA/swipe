@@ -1,19 +1,17 @@
 {{ block('header', 'header.html.twig')}}
 {% block body %}
-		<h5>TYPES D'INSTRUMENTS</h5>
+		<h5>CLASSE INSTRUMENT</h5>
 		<div class="emploi-temps">
 			<table class='table table-bordered text-white'>
 
 			<tr>
 				<td>Libelle</td>
-				<td>Classe d'Instrument</td>
 			</tr>
 
-			{% for i in pInstruments %}
+			{% for i in pclasseInstrument %}
 
 			<tr>
-				<td><a href="{{ path('instrumentConsulterType', { 'id': i.id }) }}">{{ i.libelle }}</a></td>
-				<td><a href="{{ path('instrumentListerTypeByID', { 'id': i.classeInstrument.id }) }}">{{ i.classeinstrument.libelle }}</a></td>
+				<td><a href="{{ path('instrumentListerTypeByID', { 'id': i.id }) }}">{{ i.libelle }}</a></td>
 				
 	{% else %}
 			<tr>
