@@ -16,6 +16,7 @@
 <style>
   body{
     color:white;
+    height:100%
   }
   .logo{
       width: 60px;
@@ -38,14 +39,20 @@
   }
 
 .user{
-
       font-weight: bold;
-
-
   }
 
+  footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+}
+
 </style>
-<body style="background: linear-gradient(#AD3D3D , #10193A); width: 100%; height: auto;">
+<body style="background: linear-gradient(#AD3D3D , #10193A); width: 100%;">
     <header style="display: block; width: 100%;">
         <div class="container">
             <div class="px-3 py-2  text-white">
@@ -57,7 +64,7 @@
           
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                       <li>
-                        <a href="/emusic/public/accueil" class="nav-link text-white">
+                        <a href="{{ path('route_accueil') }}" class="nav-link text-white">
                           <i class="fa-solid fa-house bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
                           Accueil
                         </a>
@@ -77,13 +84,13 @@
                      {% if app.user.id is not defined %}
 
                       <li>
-                        <a href="/emusic/public/login/index" class="nav-link text-white">
+                        <a href="{{ path('app_login') }}" class="nav-link text-white">
                           <i class="fa-solid fa-user bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Se Connecter
                         </a>
                       </li>
                       <li>
-                        <a href="/emusic/public/register/inscription" class="nav-link text-white">
+                        <a href="{{ path('Inscription') }}" class="nav-link text-white">
                           <i class="fa-solid fa-user-plus bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Créer un compte
                         </a>

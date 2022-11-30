@@ -21,6 +21,10 @@ class EleveController extends AbstractController
         ]);
     }
 
+    public function ML(ManagerRegistry $doctrine){
+		return $this->render('mentionsLegales.html.twig');
+	}
+
     public function consulterEleve(ManagerRegistry $doctrine, int $id){
 
 		$eleve= $doctrine->getRepository(Eleve::class)->find($id);

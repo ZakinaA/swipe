@@ -6,6 +6,12 @@ route_accueil:
     path: /accueil
     controller: App\Controller\UtilisateurController::index
 
+mentionsLegales:
+    path: /mentionsLegales
+    controller: App\Controller\EleveController::ML
+
+#Eleve
+
 route_Eleve:
     path: /eleve/
     controller: App\Controller\EleveController::index
@@ -13,6 +19,7 @@ route_Eleve:
 EleveConsulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulterEleve
+
 
 #Route Instrument
 
@@ -32,6 +39,10 @@ instrumentConsulter:
     path: /instrument/consulter/{id}
     controller: App\Controller\InstrumentController::consulterInstrument
 
+instrumentConsulterMaintenance:
+    path: /instrument/consulterMaintenance/{id}
+    controller: App\Controller\InstrumentController::consulterMaintenance
+
 
 #Classe Instrument
 classeInstrumentLister:
@@ -44,6 +55,7 @@ classeInstrumentLister:
 coursLister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
+
 
 
 app_login:
