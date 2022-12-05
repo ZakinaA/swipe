@@ -25,4 +25,19 @@ class CoursController extends AbstractController
         return $this->render('cours/lister.html.twig', [
             'pCours' => $cours,]);	
     }
+
+    public function consulterCours(ManagerRegistry $doctrine, int $id){
+		
+
+        $cours = $doctrine->getRepository(Cours::class)->find($id);
+    
+        if (!$cours) {
+            throw $this->createNotFoundException(
+            'Aucun cours trouvé avec le numéro '.$id
+            );
+        }
+    
+        return $this->render('cours/consulter.html.twig', [
+            'cours' => $cours,]);
+    }
 }
