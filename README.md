@@ -10,3 +10,6 @@ ADM_SWIPE / mpSwipe  - mysql
 DATABASE_URL="mysql://ADM_SWIPE:mpSwipe@172.20.177.77:3306/SWIPE"
 
 composer require symfony/security-bundle
+
+SPRINT 1 = 141
+SPRINT 2 = 163
