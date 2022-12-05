@@ -15,7 +15,7 @@
 </head>
 <style>
   body{
-    color:white;
+    color:black;
     height:100%
   }
   .logo{
@@ -47,36 +47,36 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  color: white;
+  color: black;
   text-align: center;
 }
 
 </style>
-<body style="background: linear-gradient(#AD3D3D , #10193A); width: 100%;">
+<body style="background: linear-gradient(#33FFF9 , #3933FF); width: 100%;     background-repeat: no-repeat; background-attachment: fixed;">
     <header style="display: block; width: 100%;">
         <div class="container">
-            <div class="px-3 py-2  text-white">
+            <div class="px-3 py-2  text-black">
                 <div class="container">
                   <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
+                    <a href="#" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-black text-decoration-none">
                       <img class="logo" src="http://localhost/swipe/public/img/logo-swipe.png" alt="e-music" style="width: 60px;">
                     </a>
           
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
                       <li>
-                        <a href="{{ path('route_accueil') }}" class="nav-link text-white">
+                        <a href="{{ path('route_accueil') }}" class="nav-link text-black">
                           <i class="fa-solid fa-house bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
                           Accueil
                         </a>
                       </li>
                       <li>
-                        <a href="{{ path('instrumentListerType') }}" class="nav-link text-white">
+                        <a href="{{ path('instrumentListerType') }}" class="nav-link text-black">
                           <i class="fa-solid fa-guitar bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer2"></use></i>
                           Instruments
                         </a>
                       </li>
                       <li>
-                        <a href="{{ path('coursLister') }}" class="nav-link text-white">
+                        <a href="{{ path('coursLister') }}" class="nav-link text-black">
                           <i class="fa-solid fa-music bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Cours
                         </a>
@@ -84,13 +84,13 @@
                      {% if app.user.id is not defined %}
 
                       <li>
-                        <a href="{{ path('app_login') }}" class="nav-link text-white">
+                        <a href="{{ path('app_login') }}" class="nav-link text-black">
                           <i class="fa-solid fa-user bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Se Connecter
                         </a>
                       </li>
                       <li>
-                        <a href="{{ path('Inscription') }}" class="nav-link text-white">
+                        <a href="{{ path('Inscription') }}" class="nav-link text-black">
                           <i class="fa-solid fa-user-plus bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Créer un compte
                         </a>
@@ -99,7 +99,7 @@
                       {% else %}
 
                       <li>
-                        <a href="{{path('app_logout')}}" class="nav-link text-white">
+                        <a href="{{path('app_logout')}}" class="nav-link text-black">
                           <i class="fa-regular fa-user bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Se Déconnecter
                         </a>
