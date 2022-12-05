@@ -21,5 +21,29 @@
       <tr><td>Type de l'instrument: </td><td> {{instrument.typeInstrument.libelle}}</td></tr>
    </table>
 </div>
+<h5>Accessoires</h5>
+      <div class="emploi-temps">
+        <table class="table table-bordered text-white">
+            <thead>
+              <tr>
+                <th scope="col">Libelle</th>
+                <th scope="col">Etat</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for a in instrument.accessoires %}
+                <tr>
+                    <td>{{a.libelle}}</td>
+                    <td>{{a.etat.libelle}}</td>
+                </tr>
+              {% else %}
+                <tr>
+                <td>Aucun cours n'a été trouvé.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+      
 {% endblock %}
 {{ block("footer", "footer.html.twig") }}
