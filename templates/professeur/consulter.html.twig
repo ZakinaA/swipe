@@ -54,7 +54,7 @@
         </tr>
       {% for c in cours %}
         <tr>
-            <td>{{ c.libelle}}</td>
+            <td><a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{ c.libelle}}</a></td>
             <td>{{ c.dateCours}}</td>
             <td>{{ c.heureDebut}}-{{ c.heureFin}}</td>
             <td>{{ c.nbPlaces}}</td>
