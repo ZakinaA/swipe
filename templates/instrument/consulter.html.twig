@@ -20,6 +20,7 @@
       <tr><td>Etat actuel: </td><td> {{instrument.etat.libelle}}</td></tr>
       <tr><td>Type de l'instrument: </td><td> {{instrument.typeInstrument.libelle}}</td></tr>
    </table>
+   <a href="{{ path('instrumentConsulterMaintenance', { 'id': instrument.id }) }}">Historique des Interventions</a>
 </div>
 <h5>Accessoires</h5>
       <div class="emploi-temps">
