@@ -49,7 +49,7 @@ class Cours
     private ?TypeCours $typeCours = null;
 
     #[ORM\ManyToOne(inversedBy: 'cours')]
-    private ?typeInstrument $instrument = null;
+    private ?TypeInstrument $instrument = null;
 
     public function __construct()
     {
@@ -201,12 +201,12 @@ class Cours
         return $this;
     }
 
-    public function getInstrument(): ?typeInstrument
+    public function getInstrument(): ?TypeInstrument
     {
         return $this->instrument;
     }
 
-    public function setInstrument(?typeInstrument $instrument): self
+    public function setInstrument(?TypeInstrument $instrument): self
     {
         $this->instrument = $instrument;
 
