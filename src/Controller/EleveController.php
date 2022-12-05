@@ -39,10 +39,9 @@ class EleveController extends AbstractController
             'Aucun eleve trouvé avec le numéro '.$id
 			);
 		}
-
-		//return new Response('Eleve : '.$eleve->getNom());
 		return $this->render('eleve/consulter.html.twig', [
             'eleve' => $eleve,
             'cours' => $cours,]);
+
 	}
 }

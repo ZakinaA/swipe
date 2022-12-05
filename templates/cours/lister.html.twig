@@ -21,7 +21,7 @@
                     <td>{{c.dateCours}}</td>
                     <td>{{c.heureDebut}}</td>
                     <td>{{c.heureFin}}</td>
-                    <td>{{c.libelle}}</td>
+                    <td><a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{c.libelle}}</a></td>
                     <td>{{c.professeur.nom}}</td>
                     <td>{{c.typeCours.libelle}}</td>
                 </tr>
