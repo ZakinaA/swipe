@@ -1,0 +1,32 @@
+{{ block("header", "header.html.twig") }}
+{% block body %}  
+      <h5>cours</h5>
+      <div class="emploi-temps">
+        <table class="table table-bordered text-white">
+            <thead>
+              <tr>
+                <th scope="col">Jour</th>
+                <th scope="col">Horaires</th>
+                <th scope="col">Instrument</th>
+                <th scope="col">Professeur</th>
+                <th scope="col">Type cours</th>
+                <th scope="col">Nombres de places</th>
+                <th scope="col">Age</th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{cours.dateCours}}</td>
+                    <td>{{cours.heureDebut}} à {{cours.heureFin}}</td>
+                    <td>{{cours.instrument.libelle}}</td>
+                    <td><a href="{{ path('ProfesseurConsulter', { 'id': cours.professeur.id }) }}">{{cours.professeur.nom}}</a></td>
+                    <td>{{cours.typeCours.libelle}}</td>
+                    <td>{{cours.nbPlaces}}</td>
+                    <td>de {{cours.ageMini}} à {{cours.ageMaxi}}</td>
+                </tr>
+                
+            </tbody>
+        </table>
+      </div>
+      {% endblock %}
+{{ block("footer", "footer.html.twig") }}
