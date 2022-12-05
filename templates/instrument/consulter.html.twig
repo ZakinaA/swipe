@@ -24,6 +24,7 @@
 </div>
 <h5>Accessoires</h5>
       <div class="emploi-temps">
+      {% if instrument.accessoires|length > 0 %}
         <table class="table table-bordered text-white">
             <thead>
               <tr>
@@ -37,13 +38,12 @@
                     <td>{{a.libelle}}</td>
                     <td>{{a.etat.libelle}}</td>
                 </tr>
-              {% else %}
-                <tr>
-                <td>Aucun cours n'a été trouvé.</td>
-                </tr>
               {% endfor %}
             </tbody>
         </table>
+      {% else %}
+        Aucun accessoire n'a été trouvé.
+      {% endif %}
       </div>
       
 {% endblock %}
