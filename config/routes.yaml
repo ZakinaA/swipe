@@ -90,3 +90,12 @@ ProfesseurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
 
+
+#Emprunt
+empruntLister:
+    path: /emprunt/lister/
+    controller: App\Controller\EmpruntController::lister
+
+#coursConsulter:
+#    path: /cours/consulter/{id}
+#    controller: App\Controller\CoursController::consulterCours
