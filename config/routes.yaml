@@ -98,3 +98,7 @@ ProfesseurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
 
+#Connecté :
+ConnectéConsulter:
+    path: /connecte/consulter/{mail}
+    controller: App\Controller\UtilisateurController::consulter
