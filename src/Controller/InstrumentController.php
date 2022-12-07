@@ -10,6 +10,7 @@ use App\Entity\Instrument;
 use App\Entity\ClasseInstrument;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\InstrumentType;
 
 class InstrumentController extends AbstractController
 {
@@ -95,13 +96,22 @@ public function instrumentListerTypeByID(ManagerRegistry $doctrine, int $id){
         'pInstruments' => $instrument,]);
 }
 
-public function adminDashboard(): Response
-{
+public function ajouterInstrument(ManagerRegistry $doctrine,Request $request){
+    $instrument = new instrument();
+$form = $this->createForm(InstrumentType::class, $instrument);
+$form->handleRequest($request);
+if ($form->isSubmitted() && $form->isValid()) {
 
-    // or add an optional message - seen by developers
-    $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+        $instrument = $form->getData();
+
+        $entityManager = $doctrine->getManager();
+        $entityManager->persist($instrument);
+        $entityManager->flush();
+
+    return $this->render('instrument/consulter.html.twig', ['instrument' => $instrument,]);
 }
-
-
-
+else
+    {
+        return $this->render('instrument/ajouter.html.twig', array('form' => $form->createView(),));
+}
 }
