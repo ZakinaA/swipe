@@ -14,6 +14,7 @@ politiqueCo:
     path: /politiqueDeConfidentialite
     controller: App\Controller\EleveController::PC
 
+
 #Eleve
 
 EleveConsulter:
@@ -48,6 +49,7 @@ instrumentAjouter:
     controller: App\Controller\InstrumentController::ajouterInstrument
 
 #Classe Instrument
+
 classeInstrumentLister:
     path: /classeInstrument/lister
     controller: App\Controller\ClasseInstrumentController::lister
@@ -67,7 +69,13 @@ coursConsulter:
     path: /cours/consulter/{id}
     controller: App\Controller\CoursController::consulterCours
 
-# Login 
+coursAjouter:
+    path: /cours/ajouter
+    controller: App\Controller\CoursController::ajouterCours
+
+
+# Login
+
 app_login:
     path: /login/index
     controller: App\Controller\LoginController::index
@@ -76,12 +84,16 @@ Inscription:
     path: /register/inscription
     controller: App\Controller\RegistrationController::register
 
+
     # config/routes.yaml
+
 app_logout:
     path: /logout
     methods: GET
 
+
 #Professeur :
+
 ProfesseurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
