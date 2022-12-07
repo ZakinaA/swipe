@@ -1,0 +1,61 @@
+{{ block("header", "header.html.twig") }}
+
+{% block body %}  
+<div class="emploi-temps">
+    <div class="tableau">
+        <center>
+            <h6 style="color:black; width:fit-content;">MES INFORMATIONS</h6>
+            <table class="table table-bordered text-black " style="width:auto">
+                <tr>
+                    <th scope="col">Informations</th>
+                    <th scope="col" colspan="2">Responsable</th>
+                </tr>
+                <tr>
+                    <td>Nom : </td>
+                    <td>{{responsable.nom}}</td> 
+                </tr>
+                <tr>
+                    <td>Prénom : </td>
+                    <td>{{responsable.prenom}}</td>
+                </tr>
+                <tr>
+                    <td>Adresse : </td>
+                    <td>{{responsable.rue}} {{responsable.codeP}} {{responsable.ville}}</td>
+                </tr>
+                <tr>
+                    <td>Email : </td>
+                    <td>{{responsable.email}}</td>
+                </tr>
+                <tr>
+                    <td>Téléphone : </td>
+                    <td>{{responsable.tel}}</td>
+                </tr>
+                <tr>
+                    <td>Tranche : </td>
+                    <td>{{responsable.tranche.quotient}}</td>
+                </tr>
+            </table>
+            {% if (responsable.eleves|length > 0) %}
+                {% if (responsable.eleves|length > 1) %}
+                    <h6 style="color:black; width:fit-content;">MES ELEVES</h6>
+                {% else %}
+                    <h6 style="color:black; width:fit-content;">MON ELEVE</h6>
+                {% endif %}
+                <table class="table table-bordered text-black " style="width:auto">
+                    <tr>
+                        <th scope="col">Nom Prenom</th>
+                    </tr>
+                {% for e in responsable.eleves %}
+                        <tr>
+                            <td><a href="{{ path('EleveConsulter', { 'id': e.id }) }}">{{e.nom}} {{e.prenom}}</a></td>
+                        </tr>
+                {% endfor %}
+                </table>
+            {% else %}
+                <p>Vous n'avez pas d'élèves</p>
+            {% endif %}
+        </center>
+    </div>
+</div>
+{% endblock %}
+{{ block("footer", "footer.html.twig") }}
