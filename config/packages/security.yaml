@@ -36,6 +36,7 @@ security:
     access_control:
 #exemple - { path:  ^/cours/lister, roles: [ ROLE_ADMIN] }
          - { path:  ^/instrument/ajouter, roles: [ ROLE_ADMIN] }      
+         - { path:  ^/instrument/modifier, roles: [ ROLE_ADMIN] }
          - { path: ^/profile, roles: ROLE_USER }
 
 
