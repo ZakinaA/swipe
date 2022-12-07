@@ -32,6 +32,9 @@
               {% endfor %}
             </tbody>
         </table>
+        {% if is_granted('ROLE_ADMIN') %}  
+        <a href="{{ path('coursAjouter') }}"><button type="button" class="btn btn-outline-info">Ajouter un Cours</button></a>
+        {% endif %}  
       </div>
 {% endblock %}
 {{ block("footer", "footer.html.twig") }}
