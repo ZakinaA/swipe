@@ -13,3 +13,6 @@ composer require symfony/security-bundle
 
 SPRINT 1 = 141
 SPRINT 2 = 163
+
+
+php bin/console security:hash-password

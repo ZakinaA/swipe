@@ -16,10 +16,6 @@ politiqueCo:
 
 #Eleve
 
-route_Eleve:
-    path: /eleve/
-    controller: App\Controller\EleveController::index
-
 EleveConsulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulterEleve
@@ -56,9 +52,13 @@ classeInstrumentLister:
     path: /classeInstrument/lister
     controller: App\Controller\ClasseInstrumentController::lister
 
+#Responsable
+ResponsableConsulter:
+    path: /responsable/consulter/{id}
+    controller: App\Controller\ResponsableController::consulter
+
 
 #Cours
-
 coursLister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
