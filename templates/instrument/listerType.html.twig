@@ -21,7 +21,11 @@
 			</tr>
 	{% endfor %}
 </table>
+
+{% if is_granted('ROLE_ADMIN') %}  
    <a href="{{ path('instrumentAjouter') }}"><button type="button" class="btn btn-outline-info">Ajouter un Instrument</button></a>
+{% endif %}  
+   
 </div>
 {% endblock %}
 {{ block('footer', 'footer.html.twig') }}
