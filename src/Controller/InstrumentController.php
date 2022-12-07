@@ -94,4 +94,14 @@ public function instrumentListerTypeByID(ManagerRegistry $doctrine, int $id){
     return $this->render('instrument/listerType.html.twig', [
         'pInstruments' => $instrument,]);
 }
+
+public function adminDashboard(): Response
+{
+
+    // or add an optional message - seen by developers
+    $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
+}
+
+
+
 }
