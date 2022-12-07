@@ -47,6 +47,9 @@ instrumentConsulterMaintenance:
     path: /instrument/consulterMaintenance/{id}
     controller: App\Controller\InstrumentController::consulterMaintenance
 
+instrumentAjouter:
+    path: /instrument/ajouter
+    controller: App\Controller\InstrumentController::ajouterInstrument
 
 #Classe Instrument
 classeInstrumentLister:
