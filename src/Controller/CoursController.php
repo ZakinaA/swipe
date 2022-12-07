@@ -56,12 +56,11 @@ class CoursController extends AbstractController
             $entityManager->persist($cours);
             $entityManager->flush();
  
-            return $this->render('cours/lister.html.twig', [
-                'pCours' => $cours,]);
+            return $this->redirectToRoute('coursLister');
 	    }
 	    else
         {
-            return $this->redirectToRoute('coursLister');
+            return $this->render('cours/ajouter.html.twig', array('form' => $form->createView(),));
 	    }
     }
 }
