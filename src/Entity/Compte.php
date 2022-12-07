@@ -29,6 +29,15 @@ class Compte implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Responsable $responsable = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Professeur $professeur = null;
+
+    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    private ?Eleve $eleve = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -97,5 +106,41 @@ class Compte implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    public function getResponsable(): ?Responsable
+    {
+        return $this->responsable;
+    }
+
+    public function setResponsable(?Responsable $responsable): self
+    {
+        $this->responsable = $responsable;
+
+        return $this;
+    }
+
+    public function getProfesseur(): ?Professeur
+    {
+        return $this->professeur;
+    }
+
+    public function setProfesseur(?Professeur $professeur): self
+    {
+        $this->professeur = $professeur;
+
+        return $this;
+    }
+
+    public function getEleve(): ?Eleve
+    {
+        return $this->eleve;
+    }
+
+    public function setEleve(?Eleve $eleve): self
+    {
+        $this->eleve = $eleve;
+
+        return $this;
     }
 }

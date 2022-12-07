@@ -71,6 +71,19 @@ a:hover{
                     </a>
           
                     <ul class="nav col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small">
+
+{# EXEMPLE A SUPPRIMER ICI: DANS LE IF ON MET LE ROLE ET MET CE QU ON VEUT AFFICHER #}
+
+                    {% if is_granted('ROLE_ADMIN') %}  
+                      <li>
+                        <a href="{{ path('route_accueil') }}" class="nav-link text-black">
+                          <i class="fa-solid fa-house bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
+                          ADMIN
+                        </a>
+                      </li>
+                    {% endif %}  
+ {# ----------------- #}                     
+                      
                       <li>
                         <a href="{{ path('route_accueil') }}" class="nav-link text-black">
                           <i class="fa-solid fa-house bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
