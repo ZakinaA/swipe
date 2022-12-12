@@ -90,6 +90,10 @@ coursModifier:
     path: /cours/modifier/{id}
     controller: App\Controller\CoursController::modifierCours
 
+EleveCoursSupprimer:
+    path: /cours/supprimer/{id}
+    controller: App\Controller\CoursController::supprimerCoursEleve
+
 
 # Login
 
@@ -125,6 +129,10 @@ empruntLister:
 empruntConsulter:
     path: /emprunt/consulter/{id}
     controller: App\Controller\EmpruntController::consulter
+
+empruntAjouter:
+    path: /emprunt/ajouter/{id}
+    controller: App\Controller\EmpruntController::ajouter
 
 #Connecté :
 ConnectéConsulter:

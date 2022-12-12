@@ -3,7 +3,7 @@
 {% block body %}  
  <div class="emploi-temps">
  <div class="tableau">
- {% if app.user.id is defined and app.user.roles.0 == 'ROLE_ELEVE' and eleve.id == app.user.eleve.id or app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id %}
+ {% if app.user.id is defined and app.user.roles.0 == 'ROLE_ELEVE' and eleve.id == app.user.eleve.id or app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
 <h5 style="color:black;">PAGE DE CONSULTATION D'UN ELEVE</h5>
  <center>
  
@@ -51,6 +51,10 @@
                     <th scope="col">Crénaux horaire</th>
                     <th scope="col">Nombre de paiements</th>
                     <th scope="col">Prix du cours</th>
+                     {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
+
+                         <th scope="col">  </th>
+                    {% endif %}
                 </tr>
             
                 {% for c in eleve.inscriptions %}
@@ -60,6 +64,9 @@
                         <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
                         <td>{{ c.nombredepaiements}}</td>
                         <td>{{ c.cours.prix}}€</td>
+                 {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
+                           <th scope="col"><a href="{{ path('EleveCoursSupprimer',{ 'id': c.id }) }}"><button type="button" class="btn btn-outline-danger">Supprimer du cours</button></a></th>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>
