@@ -51,7 +51,8 @@
                     <th scope="col">Crénaux horaire</th>
                     <th scope="col">Nombre de paiements</th>
                     <th scope="col">Prix du cours</th>
-                    {% if is_granted('ROLE_RESPONSABLE') or is_granted('ROLE_ADMIN') %}  
+                     {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
+
                          <th scope="col">  </th>
                     {% endif %}
                 </tr>
