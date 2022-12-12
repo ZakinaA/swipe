@@ -61,7 +61,7 @@ a:hover{
 }
 </style>
 <body style="background: linear-gradient(#33FFF9 , #3933FF); width: 100%;     background-repeat: no-repeat; background-attachment: fixed;">
-    <header style="display: block; width: 100%;">
+    <header style="display: block; width: 100%; background-color:;">
         <div class="container">
             <div class="px-3 py-2  text-black">
                 <div class="container">
@@ -137,10 +137,16 @@ a:hover{
                       </li>
                       
                     </ul>
-                       
-                  <h4 class="user"> {{app.user.mail}} </h4>
-                        
-                  {% endif %}
+                    {% if app.user.roles.0 == 'ROLE_RESPONSABLE' %}
+                      <a href="{{ path('ResponsableConsulter', { 'id': app.user.responsable.id }) }}">
+                    {% elseif app.user.roles.0 == 'ROLE_ELEVE' %}
+                      <a href="{{ path('EleveConsulter', { 'id': app.user.eleve.id }) }}">
+                    {% elseif app.user.roles.0 == 'ROLE_PROFESSEUR' %}
+                      <a href="{{ path('ProfesseurConsulter', { 'id': app.user.professeur.id }) }}">
+                    {% endif %}
+                      <h4 class="user"> {{app.user.mail}} </h4>
+                    </a>   
+                  {% endif %} 
                   
                   </div>
                 </div>

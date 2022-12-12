@@ -5,109 +5,83 @@
  <div class="tableau">
 <h5 style="color:black;">PAGE DE CONSULTATION D'UN ELEVE</h5>
  <center>
-<h6 style="color:black; width:fit-content;">MES INFORMATIONS</h6>
- <p>
+ {% if app.user.id is defined and app.user.roles.0 == 'ROLE_ELEVE' and eleve.id == app.user.eleve.id or app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id %}
+        <h6 style="color:black; width:fit-content;">MES INFORMATIONS</h6>
+        <p>
 
-    <table class="table table-bordered text-black " style="width:auto">
-        <tr>
-            <th scope="col">Informations</th>
-            <th scope="col" colspan="2">Elève</th>
-        </tr>
-        <tr>
-	        <td>Nom : </td>
-            <td>{{eleve.nom}}</td>
-        </tr>
-        <tr>
-            <td>Prénom : </td>
-            <td>{{eleve.prenom}}</td>
-        </tr>
-        <tr>
-	        <td>Date de naissance : </td>
-            <td>{{eleve.date_naiss|date("d/m/Y")}}</td>
-        </tr>
-    </table>
+            <table class="table table-bordered text-black " style="width:auto">
+                <tr>
+                    <th scope="col">Informations</th>
+                    <th scope="col" colspan="2">Elève</th>
+                </tr>
+                <tr>
+                    <td>Nom : </td>
+                    <td>{{eleve.nom}}</td>
+                </tr>
+                <tr>
+                    <td>Prénom : </td>
+                    <td>{{eleve.prenom}}</td>
+                </tr>
+                <tr>
+                    <td>Date de naissance : </td>
+                    <td>{{eleve.date_naiss|date("d/m/Y")}}</td>
+                </tr>
+            </table>
 
 
-    <h6 style="color:black; width:fit-content;">MON RESPONSABLE</h6>
-     <p>
-    <table class="table table-bordered text-black" style="width:auto">
-        <tr>
-            <th scope="col">Informations</th>
-            <th scope="col">Responsable</th>
-        </tr>
-        <tr>
-	        <td>Nom : </td>
-            <td>{{eleve.responsable.nom}}</td>
-        </tr>
-        <tr>
-            <td>Prénom : </td>
-            <td>{{eleve.responsable.prenom}}</td>
-        </tr>
-        <tr>
-	        <td>Ville : </td>
-            <td>{{eleve.responsable.ville}}</td>
-        </tr>
-        <tr>
-	        <td>Rue : </td>
-            <td>{{eleve.responsable.rue}}</td>
-        </tr>
-        <tr>
-	        <td>Code Postal : </td>
-            <td>{{eleve.responsable.codep}}</td>
-        </tr>
-        <tr>
-	        <td>Email : </td>
-            <td>{{eleve.responsable.email}}</td>
-        </tr>
-        <tr>
-	        <td>Téléphone : </td>
-            <td>{{eleve.responsable.tel}}</td>
-        </tr>
-        <tr>
-	        <td>Tranche quotient : </td>
-            <td>{{eleve.responsable.tranche.quotient}}</td>
-        </tr>
-    </table>
+            <h6 style="color:black; width:fit-content;">MON RESPONSABLE</h6>
+            <p>
+            <table class="table table-bordered text-black" style="width:auto">
+                <tr>
+                    <th scope="col">Responsable</th>
+                </tr>
+                <tr>
+                    <td>{{eleve.responsable.nom}} {{eleve.responsable.prenom}}</td>
+                </tr>
+            </table>
+            <p>Pour plus d'information sur le responsable veuillez vous connecter sur le compte responsable de cette élève</p>
+        <h6 style="color:black; width:fit-content">MES COURS</h6>
+        <p>
+            <table class="table table-bordered text-black"style="width:auto">
+                <tr>
+                    <th scope="col">Cours</th>
+                    <th scope="col">Jour</th>
+                    <th scope="col">Crénaux horaire</th>
+                    <th scope="col">Nombre de paiements</th>
+                </tr>
+            {% for c in eleve.inscriptions %}
+                <tr>
+                    <td>{{ c.cours.libelle}}</td>
+                    <td>{{ c.cours.dateCours}}</td>
+                    <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
+                    <td>{{ c.nombredepaiements}}</td>
+                </tr>
+                {% endfor %}
+            </table>
 
-<h6 style="color:black; width:fit-content">MES COURS</h6>
- <p>
-    <table class="table table-bordered text-black"style="width:auto">
-        <tr>
-            <th scope="col">Cours</th>
-            <th scope="col">Jour</th>
-            <th scope="col">Crénaux horaire</th>
-            <th scope="col">Nombre de paiements</th>
-        </tr>
-      {% for c in eleve.inscriptions %}
-        <tr>
-            <td>{{ c.cours.libelle}}</td>
-            <td>{{ c.cours.dateCours}}</td>
-            <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
-            <td>{{ c.nombredepaiements}}</td>
-        </tr>
-	     {% endfor %}
-    </table>
-
-    <h6 style="color:black; width:fit-content">MES EMPRUNTS</h6>
-    <p>
-    <table class="table table-bordered text-black"style="width:auto">
-        <tr>
-            <th scope="col">Id de l'instrument</th>
-            <th scope="col">Instrument</th>
-            <th scope="col">Date Emprunt</th>
-            <th scope="col">Date Fin</th>
-            <th scope="col">Etat</th>
-        </tr>
-           {% for i in eleve.emprunters %}
-        <tr>
-            <td>{{ i.instrument.id}}</td>
-            <td>{{ i.instrument.intitule}}</td>
-            <td>{{ i.datedebut|date("d/m/Y")}}</td>
-            <td>{{ i.dateretour|date("d/m/Y")}}</td>
-            <td>{{ i.instrument.etat.libelle}}</td>
-        </tr>
-	     {% endfor %}
-    </table>
+            <h6 style="color:black; width:fit-content">MES EMPRUNTS</h6>
+            <p>
+            <table class="table table-bordered text-black"style="width:auto">
+                <tr>
+                    <th scope="col">Id de l'instrument</th>
+                    <th scope="col">Instrument</th>
+                    <th scope="col">Date Emprunt</th>
+                    <th scope="col">Date Fin</th>
+                    <th scope="col">Etat</th>
+                </tr>
+                {% for i in eleve.emprunters %}
+                <tr>
+                    <td>{{ i.instrument.id}}</td>
+                    <td>{{ i.instrument.intitule}}</td>
+                    <td>{{ i.datedebut|date("d/m/Y")}}</td>
+                    <td>{{ i.dateretour|date("d/m/Y")}}</td>
+                    <td>{{ i.instrument.etat.libelle}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+    {% else %}
+        <p>Vous ne pouvez pas voir cela !</p>
+    {% endif %}
  </div>
  </div>
  </center>

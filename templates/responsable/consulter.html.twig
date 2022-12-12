@@ -1,9 +1,9 @@
 {{ block("header", "header.html.twig") }}
-
-{% block body %}  
+{% block body %}
 <div class="emploi-temps">
     <div class="tableau">
         <center>
+        {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and responsable.id == app.user.responsable.id %}
             <h6 style="color:black; width:fit-content;">MES INFORMATIONS</h6>
             <table class="table table-bordered text-black " style="width:auto">
                 <tr>
@@ -54,8 +54,14 @@
             {% else %}
                 <p>Vous n'avez pas d'élèves</p>
             {% endif %}
+        {% else %}
+            <p>Vous ne pouvez pas voir cela !</p>
+        {% endif %}
         </center>
     </div>
 </div>
+
+
 {% endblock %}
+
 {{ block("footer", "footer.html.twig") }}
