@@ -40,6 +40,7 @@ security:
          - { path:  ^/emprunt/lister, roles: [ ROLE_ADMIN] }
          - { path:  ^/emprunt/consulter, roles: [ ROLE_ELEVE] }
          - { path:  ^/emprunt/consulter, roles: [ ROLE_USER] }
+         - { path:  ^/emprunt/ajouter, roles: [ ROLE_ELEVE] }
 
 
    

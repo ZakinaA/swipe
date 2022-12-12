@@ -6,8 +6,11 @@
 <h5 style="color:black;">PAGE DE CONSULTATION DE VOS EMPRUNTS</h5>
  <center>
 
+<style>
 
+</style>
 
+ {% if app.user.id is defined and app.user.roles.0 == 'ROLE_ELEVE' and eleve.id == app.user.eleve.id  %}
 
     <h6 style="color:black; width:fit-content">MES EMPRUNTS</h6>
     <p>
@@ -27,6 +30,15 @@
         </tr>
 	     {% endfor %}
     </table>
+
+    {% if is_granted('ROLE_ELEVE') %}  
+   <a href="{{ path('empruntAjouter', { 'id': app.user.eleve.id  }) }}"><button type="button" class="btn btn-outline-dark">Je veux emprunter un instrument</button></a>
+    {% endif %}  
+
+    {% else %}
+        <p>Vous ne pouvez pas voir cela !</p>
+    {% endif %}
+
  </div>
  </div>
  </center>
