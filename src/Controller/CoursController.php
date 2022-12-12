@@ -10,6 +10,7 @@ use App\Entity\TypeInstrument;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\AjouterCoursType;
+use App\Form\ModifierCoursType;
 
 class CoursController extends AbstractController
 {
@@ -63,4 +64,34 @@ class CoursController extends AbstractController
             return $this->render('cours/ajouter.html.twig', array('form' => $form->createView(),));
 	    }
     }
+
+    public function modifierCours(ManagerRegistry $doctrine, $id, Request $request){
+ 
+        //récupération de l'étudiant dont l'id est passé en paramètre
+        $cours = $doctrine->getRepository(Cours::class)->find($id);
+ 
+        if (!$cours) {
+            throw $this->createNotFoundException('Aucun cours trouvé avec le numéro '.$id);
+        }
+        else
+        {
+            $form = $this->createForm(ModifierCoursType::class, $cours);
+            $form->handleRequest($request);
+     
+            if ($form->isSubmitted() && $form->isValid()) {
+     
+                $cours = $form->getData();
+
+               $entityManager = $doctrine->getManager();
+                $entityManager->persist($cours);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('coursLister');
+            }
+            else
+            {
+                return $this->render('cours/ajouter.html.twig', array('form' => $form->createView(),));
+            }
+        }
+     }
 }
