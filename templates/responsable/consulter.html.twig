@@ -50,19 +50,13 @@
                 {% for e in responsable.eleves %}            
                     <tr>
                         <td><a href="{{ path('EleveConsulter', { 'id': e.id }) }}">{{e.nom}} {{e.prenom}}</a></td>
-                        {% set prix = 0 %}
+                    {% set prix = 0 %}
                     {% for i in e.inscriptions %}
                         {% set prix = prix + i.cours.prix * i.nombreDePaiements %}
                     {% endfor %}
                         <td>{{ prix }}€</td>
                         <td><a href="{{ path('EleveSupprimer',{ 'id': e.id }) }}"><button type="button" class="btn btn-outline-danger">Supprimer l'élève</button></td>
                     </tr>
-                {% for e in responsable.eleves %}
-                        <tr>
-                            <td><a href="{{ path('EleveConsulter', { 'id': e.id }) }}">{{e.nom}} {{e.prenom}}</a></td>
-                            <td><a href="{{ path('EleveSupprimer',{ 'id': e.id }) }}"><button type="button" class="btn btn-outline-danger">Supprimer l'élève</button></a></td>
-                        </tr>
-
                 {% endfor %}
                 </table>
             {% else %}
