@@ -28,7 +28,7 @@
             </tbody>
         </table>
         {% if is_granted('ROLE_ADMIN') %}  
-        <a href="{{ path('coursModifier') }}"><button type="button" class="btn btn-outline-info">Modifier le cours</button></a>
+        <a href="{{ path('coursModifier', { 'id': cours.id }) }}"><button type="button" class="btn btn-outline-info">Modifier le cours</button></a>
         {% endif %}
       </div>
       {% endblock %}
