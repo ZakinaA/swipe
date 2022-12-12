@@ -101,6 +101,14 @@ a:hover{
                         </a>
                       </li>
                     {% endif %}  
+                    {% if is_granted('ROLE_RESPONSABLE') %}  
+                      <li>
+                        <a href="{{ path('InscriptionEleve') }}" class="nav-link text-black">
+                          <i class="fa-solid fa-child bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
+                          Nouvel élève
+                        </a>
+                      </li>
+                    {% endif %} 
                       <li>
                         <a href="{{ path('instrumentListerType') }}" class="nav-link text-black">
                           <i class="fa-solid fa-guitar bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer2"></use></i>
