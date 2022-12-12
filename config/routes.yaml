@@ -105,7 +105,9 @@ Inscription:
     path: /register/inscription
     controller: App\Controller\RegistrationController::register
 
-
+InscriptionEleve:
+    path: /eleve/inscription
+    controller: App\Controller\RegistrationEleveController::register
 
 
     # config/routes.yaml
