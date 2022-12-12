@@ -1,6 +1,19 @@
-{{ block("header", "header.html.twig") }} 
+{{ block("header", "header.html.twig") }}
 {# templates/instrument/ajouter.html.twig #}
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+
+<div class="form">
+<div class="card-body" align="left">
+    <div class="form-groupe">{{ form_row(form.intitule) }}</div>
+    <div class="form-groupe">{{ form_row(form.prixAchat) }}</div>
+    <div class="form-groupe">{{ form_row(form.dateAchat) }}</div>
+    <div class="form-groupe">{{ form_row(form.utilisation) }}</div>
+    <div class="form-groupe">{{ form_row(form.marque) }}</div>
+    <div class="form-groupe">{{ form_row(form.couleur) }}</div>
+    <div class="form-groupe">{{ form_row(form.etat) }}</div>
+    <div class="form-groupe">{{ form_row(form.typeInstrument) }}</div>
+</div>
+</div>
+
+<button type="submit">Ajouter un instrument</button>
 {{ block("footer", "footer.html.twig") }}
