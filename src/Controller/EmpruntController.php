@@ -28,4 +28,20 @@ class EmpruntController extends AbstractController
             'pEmprunt' => $emprunt,]);	
     }
 
+    public function consulter(ManagerRegistry $doctrine, int $id){
+
+		$eleve= $doctrine->getRepository(Eleve::class)->find($id);
+        $emprunt= $doctrine->getRepository(Emprunter::class)->findAll();
+
+		if (!$eleve) {
+			throw $this->createNotFoundException(
+            'Aucun eleve trouvé avec le numéro '.$id
+			);
+		}
+		return $this->render('emprunt/consulter.html.twig', [
+            'eleve' => $eleve,
+            'emprunts' => $emprunt,]);
+
+	}
+
 }

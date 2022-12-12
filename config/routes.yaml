@@ -96,6 +96,10 @@ empruntLister:
     path: /emprunt/lister/
     controller: App\Controller\EmpruntController::lister
 
+empruntConsulter:
+    path: /emprunt/consulter/{id}
+    controller: App\Controller\EmpruntController::consulter
+
 #coursConsulter:
 #    path: /cours/consulter/{id}
 #    controller: App\Controller\CoursController::consulterCours

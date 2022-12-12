@@ -37,6 +37,8 @@ security:
 #exemple - { path:  ^/cours/lister, roles: [ ROLE_ADMIN] }
          - { path:  ^/instrument/ajouter, roles: [ ROLE_ADMIN] }      
          - { path:  ^/instrument/modifier, roles: [ ROLE_ADMIN] }
+         - { path:  ^/emprunt/lister, roles: [ ROLE_ADMIN] }
+         - { path:  ^/emprunt/consulter, roles: [ ROLE_ELEVE] }
          - { path: ^/profile, roles: ROLE_USER }
 
 
