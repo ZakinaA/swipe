@@ -51,6 +51,9 @@
                     <th scope="col">Crénaux horaire</th>
                     <th scope="col">Nombre de paiements</th>
                     <th scope="col">Prix du cours</th>
+                    {% if is_granted('ROLE_RESPONSABLE') or is_granted('ROLE_ADMIN') %}  
+                         <th scope="col">  </th>
+                    {% endif %}
                 </tr>
             
                 {% for c in eleve.inscriptions %}
@@ -60,6 +63,9 @@
                         <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
                         <td>{{ c.nombredepaiements}}</td>
                         <td>{{ c.cours.prix}}€</td>
+                        {% if is_granted('ROLE_RESPONSABLE') or is_granted('ROLE_ADMIN') %}  
+                           <th scope="col"><a href="{{ path('EleveCoursSupprimer',{ 'id': c.id }) }}"><button type="button" class="btn btn-outline-danger">Supprimer du cours</button></a></th>
+                        {% endif %}
                     </tr>
                 {% endfor %}
             </table>

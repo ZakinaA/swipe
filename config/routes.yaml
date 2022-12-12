@@ -90,6 +90,10 @@ coursModifier:
     path: /cours/modifier/{id}
     controller: App\Controller\CoursController::modifierCours
 
+EleveCoursSupprimer:
+    path: /cours/supprimer/{id}
+    controller: App\Controller\CoursController::supprimerCoursEleve
+
 
 # Login
 
