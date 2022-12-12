@@ -143,3 +143,7 @@ ConnectéConsulter:
     path: /connecte/consulter/{mail}
     controller: App\Controller\UtilisateurController::consulter
 
+# Paiement
+payer:
+    path: /payement/{id}
+    controller: App\Controller\PaiementController::pagePaiement
