@@ -3,67 +3,69 @@
 {% block body %}  
  <div class="emploi-temps">
  <div class="tableau">
-<h5 style="color:black;">PAGE DE CONSULTATION D'UN PROFESSEUR</h5>
- <center>
-<h6 style="color:black; width:fit-content;">MES INFORMATIONS</h6>
- <p>
+ {% if app.user.id is defined and app.user.roles.0 == 'ROLE_PROFESSEUR' and professeur.id == app.user.professeur.id %}
+        <h5 style="color:black;">PAGE DE CONSULTATION D'UN PROFESSEUR</h5>
+        <center>
+        <h6 style="color:black; width:fit-content;">MES INFORMATIONS</h6>
+        <p>
 
-    <table class="table table-bordered text-black " style="width:auto">
-        <tr>
-            <th scope="col">Informations</th>
-            <th scope="col" colspan="2">Professeur</th>
-        </tr>
-        <tr>
-	        <td>Nom : </td>
-            <td>{{professeur.nom}}</td>
-        </tr>
-        <tr>
-            <td>Prénom : </td>
-            <td>{{professeur.prenom}}</td>
-        </tr>
-        <tr>
-	        <td>rue : </td>
-            <td>{{professeur.rue}}</td>
-        </tr>
-        <tr>
-	        <td>email : </td>
-            <td>{{professeur.email}}</td>
-        </tr>
-        <tr>
-	        <td>Téléphone : </td>
-            <td>{{professeur.tel}}</td>
-        </tr>
-        <tr>
-	        <td>ville : </td>
-            <td>{{professeur.ville}}</td>
-        </tr>
-        <tr>
-	        <td>Code Postal : </td>
-            <td>{{professeur.codeP}}</td>
-        </tr>
-    </table>
+            <table class="table table-bordered text-black " style="width:auto">
+                <tr>
+                    <th scope="col">Informations</th>
+                    <th scope="col" colspan="2">Professeur</th>
+                </tr>
+                <tr>
+                    <td>Nom : </td>
+                    <td>{{professeur.nom}}</td>
+                </tr>
+                <tr>
+                    <td>Prénom : </td>
+                    <td>{{professeur.prenom}}</td>
+                </tr>
+                <tr>
+                    <td>rue : </td>
+                    <td>{{professeur.rue}}</td>
+                </tr>
+                <tr>
+                    <td>email : </td>
+                    <td>{{professeur.email}}</td>
+                </tr>
+                <tr>
+                    <td>Téléphone : </td>
+                    <td>{{professeur.tel}}</td>
+                </tr>
+                <tr>
+                    <td>ville : </td>
+                    <td>{{professeur.ville}}</td>
+                </tr>
+                <tr>
+                    <td>Code Postal : </td>
+                    <td>{{professeur.codeP}}</td>
+                </tr>
+            </table>
 
-<h6 style="color:black; width:fit-content">MES COURS</h6>
- <p>
-    <table class="table table-bordered text-black"style="width:auto">
-        <tr>
-            <th scope="col">Cours</th>
-            <th scope="col">Jour</th>
-            <th scope="col">Crénaux horaire</th>
-            <th scope="col">Nombre de place</th>
-        </tr>
-      {% for c in cours %}
-        <tr>
-            <td><a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{ c.libelle}}</a></td>
-            <td>{{ c.dateCours}}</td>
-            <td>{{ c.heureDebut}}-{{ c.heureFin}}</td>
-            <td>{{ c.nbPlaces}}</td>
-        </tr>
-	     {% endfor %}
-    </table>
-
+        <h6 style="color:black; width:fit-content">MES COURS</h6>
+        <p>
+            <table class="table table-bordered text-black"style="width:auto">
+                <tr>
+                    <th scope="col">Cours</th>
+                    <th scope="col">Jour</th>
+                    <th scope="col">Crénaux horaire</th>
+                    <th scope="col">Nombre de place</th>
+                </tr>
+            {% for c in cours %}
+                <tr>
+                    <td><a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{ c.libelle}}</a></td>
+                    <td>{{ c.dateCours}}</td>
+                    <td>{{ c.heureDebut}}-{{ c.heureFin}}</td>
+                    <td>{{ c.nbPlaces}}</td>
+                </tr>
+                {% endfor %}
+        </table>
+    {% else %}
+            <p>Vous ne pouvez pas voir cela !</p>
+    {% endif %}
  </div>
  </div>
- </center>
 {% endblock %}
 {{ block("footer", "footer.html.twig") }}
