@@ -3,6 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Compte;
+use App\Entity\Eleve;
+use App\Entity\Responsable;
+use App\Entity\Professeur;
 use App\Form\RegistrationFormType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

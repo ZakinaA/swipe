@@ -7,6 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Cours;
 use App\Entity\TypeInstrument;
+use App\Entity\Inscription;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\AjouterCoursType;
@@ -24,7 +25,7 @@ class CoursController extends AbstractController
 
     public function lister(ManagerRegistry $doctrine){
         $repository = $doctrine->getRepository(Cours::class);
-        $cours = $repository->findAll();
+        $cours = $repository->findBy(array(), array('dateCours' => 'ASC'));
         return $this->render('cours/lister.html.twig', [
             'pCours' => $cours,]);	
     }
@@ -94,4 +95,18 @@ class CoursController extends AbstractController
             }
         }
      }
+     public function supprimerCoursEleve(ManagerRegistry $doctrine, int $id){
+
+        $inscription = $doctrine->getRepository(Inscription::class)->find($id);
+
+        if (!$inscription){
+            throw $this->createNotFoundException('Aucun cours avec cet élève trouvé avec cet id !');
+        }
+        else{
+            $entityManager = $doctrine->getManager();
+            $entityManager->remove($inscription);
+            $entityManager->flush();
+            return $this->redirectToRoute('route_accueil');    
+        }
+    }
 }

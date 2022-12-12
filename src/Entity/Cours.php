@@ -51,6 +51,9 @@ class Cours
     #[ORM\ManyToOne(inversedBy: 'cours')]
     private ?TypeInstrument $instrument = null;
 
+    #[ORM\Column(nullable: true)]
+    private ?int $prix = null;
+
     public function __construct()
     {
         $this->inscriptions = new ArrayCollection();
@@ -223,6 +226,18 @@ class Cours
     {
         $this->pro = $pro;
 
+
+        return $this;
+    }
+
+    public function getPrix(): ?int
+    {
+        return $this->prix;
+    }
+
+    public function setPrix(?int $prix): self
+    {
+        $this->prix = $prix;
 
         return $this;
     }

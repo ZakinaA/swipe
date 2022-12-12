@@ -28,10 +28,6 @@
 {% if is_granted('ROLE_ADMIN') %}  
    <a href="{{ path('instrumentModifier',{ 'id': instrument.id }) }}"><button type="button" class="btn btn-outline-info">Modifier un Instrument</button></a>
 {% endif %}
-
-
-   <a href="{{ path('instrumentConsulterMaintenance', { 'id': instrument.id }) }}">Historique des Interventions</a>
-
 </div>
 
 
