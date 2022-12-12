@@ -48,6 +48,10 @@ instrumentAjouter:
     path: /instrument/ajouter
     controller: App\Controller\InstrumentController::ajouterInstrument
 
+instrumentModifier:
+    path: /instrument/modifier/{id}
+    controller: App\Controller\InstrumentController::modifierInstrument
+
 #Classe Instrument
 
 classeInstrumentLister:
@@ -98,7 +102,19 @@ ProfesseurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
 
+
+
+#Emprunt
+empruntLister:
+    path: /emprunt/lister/
+    controller: App\Controller\EmpruntController::lister
+
+empruntConsulter:
+    path: /emprunt/consulter/{id}
+    controller: App\Controller\EmpruntController::consulter
+
 #Connecté :
 ConnectéConsulter:
     path: /connecte/consulter/{mail}
     controller: App\Controller\UtilisateurController::consulter
+

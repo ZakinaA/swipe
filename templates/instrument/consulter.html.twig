@@ -20,8 +20,17 @@
       <tr><td>Etat actuel: </td><td> {{instrument.etat.libelle}}</td></tr>
       <tr><td>Type de l'instrument: </td><td> {{instrument.typeInstrument.libelle}}</td></tr>
    </table>
+
+{% if is_granted('ROLE_ADMIN') %}  
+   <a href="{{ path('instrumentModifier',{ 'id': instrument.id }) }}"><button type="button" class="btn btn-outline-info">Modifier un Instrument</button></a>
+{% endif %}
+
+
    <a href="{{ path('instrumentConsulterMaintenance', { 'id': instrument.id }) }}">Historique des Interventions</a>
 </div>
+
+
+
 <h5>Accessoires</h5>
       <div class="emploi-temps">
 

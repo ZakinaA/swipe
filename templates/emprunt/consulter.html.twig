@@ -1,0 +1,34 @@
+{{ block("header", "header.html.twig") }}
+
+{% block body %}  
+ <div class="emploi-temps">
+ <div class="tableau">
+<h5 style="color:black;">PAGE DE CONSULTATION DE VOS EMPRUNTS</h5>
+ <center>
+
+
+
+
+    <h6 style="color:black; width:fit-content">MES EMPRUNTS</h6>
+    <p>
+    <table class="table table-bordered text-black"style="width:auto">
+        <tr>
+            <th scope="col">Instrument</th>
+            <th scope="col">Date Emprunt</th>
+            <th scope="col">Date Fin</th>
+            <th scope="col">Etat</th>
+        </tr>
+           {% for i in eleve.emprunters %}
+        <tr>
+            <td><a href="{{ path('instrumentConsulter', { 'id': i.instrument.id }) }}">{{i.instrument.intitule}}</a></td>
+            <td>{{ i.datedebut|date("d/m/Y")}}</td>
+            <td>{{ i.dateretour|date("d/m/Y")}}</td>
+            <td>{{ i.instrument.etat.libelle}}</td>
+        </tr>
+	     {% endfor %}
+    </table>
+ </div>
+ </div>
+ </center>
+{% endblock %}
+{{ block("footer", "footer.html.twig") }}

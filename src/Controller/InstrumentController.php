@@ -11,6 +11,7 @@ use App\Entity\ClasseInstrument;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\InstrumentType;
+use App\Form\InstrumentModifierType;
 
 class InstrumentController extends AbstractController
 {
@@ -115,4 +116,33 @@ else
         return $this->render('instrument/ajouter.html.twig', array('form' => $form->createView(),));
 }
 }
+
+public function modifierInstrument(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    //récupération de l'étudiant dont l'id est passé en paramètre
+    $instrument = $doctrine
+        ->getRepository(Instrument::class)
+        ->find($id);
+ 
+    if (!$instrument) {
+        throw $this->createNotFoundException('Aucun Instrument trouvé avec le numéro '.$id);
+    }
+    else
+    {
+            $form = $this->createForm(InstrumentModifierType::class, $instrument);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $instrument = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($instrument);
+                 $entityManager->flush();
+                 return $this->render('instrument/consulter.html.twig', ['instrument' => $instrument,]);
+           }
+           else{
+                return $this->render('instrument/ajouter.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
 }
