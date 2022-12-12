@@ -34,7 +34,11 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-#exemple - { path:  ^/cours/lister, roles: [ ROLE_ADMIN] }     
+#exemple - { path:  ^/cours/lister, roles: [ ROLE_ADMIN] }
+         - { path:  ^/instrument/ajouter, roles: [ ROLE_ADMIN] }      
+         - { path:  ^/instrument/modifier, roles: [ ROLE_ADMIN] }
+         - { path:  ^/emprunt/lister, roles: [ ROLE_ADMIN] }
+         - { path:  ^/emprunt/consulter, roles: [ ROLE_ELEVE] }
          - { path: ^/profile, roles: ROLE_USER }
 
 

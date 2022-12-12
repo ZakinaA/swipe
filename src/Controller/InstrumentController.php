@@ -14,6 +14,8 @@ use App\Form\InstrumentType;
 use App\Entity\Accessoire;
 use App\Entity\Intervenir;
 use App\Entity\Emprunter;
+use App\Form\InstrumentModifierType;
+
 
 class InstrumentController extends AbstractController
 {
@@ -119,6 +121,7 @@ public function ajouterInstrument(ManagerRegistry $doctrine,Request $request){
 }
 }
 
+
 public function supprimerInstrument(ManagerRegistry $doctrine, int $id, Request $request){
 
     $accessoire = $doctrine->getRepository(Accessoire::class)->findByInstrument($id);
@@ -154,4 +157,34 @@ public function supprimerInstrument(ManagerRegistry $doctrine, int $id, Request 
         return $this->redirectToRoute('instrumentListerType');
     }
 }
+
+public function modifierInstrument(ManagerRegistry $doctrine, $id, Request $request){
+ 
+    //récupération de l'étudiant dont l'id est passé en paramètre
+    $instrument = $doctrine
+        ->getRepository(Instrument::class)
+        ->find($id);
+ 
+    if (!$instrument) {
+        throw $this->createNotFoundException('Aucun Instrument trouvé avec le numéro '.$id);
+    }
+    else
+    {
+            $form = $this->createForm(InstrumentModifierType::class, $instrument);
+            $form->handleRequest($request);
+ 
+            if ($form->isSubmitted() && $form->isValid()) {
+ 
+                 $instrument = $form->getData();
+                 $entityManager = $doctrine->getManager();
+                 $entityManager->persist($instrument);
+                 $entityManager->flush();
+                 return $this->render('instrument/consulter.html.twig', ['instrument' => $instrument,]);
+           }
+           else{
+                return $this->render('instrument/ajouter.html.twig', array('form' => $form->createView(),));
+           }
+        }
+ }
+
 }

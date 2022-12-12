@@ -1,0 +1,32 @@
+{{ block("header", "header.html.twig") }}
+
+
+{% block body %}
+      <div class="emploi-temps">
+        <table class="table table-bordered text-black">
+            <thead>
+              <tr>
+                <th scope="col">Eleve</th>
+                <th scope="col">Date de début</th>
+                <th scope="col">Date de retour</th>
+                <th scope="col">Instrument</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for e in pEmprunt %}
+                <tr>
+                      <td><a href="{{ path('EleveConsulter', { 'id': e.eleve.id }) }}">{{e.eleve.nom}}</a></td>
+                    <td>{{e.dateDebut|date("d/m/Y")}}</td>
+                    <td>{{e.dateRetour|date("d/m/Y")}}</td>
+                    <td><a href="{{ path('instrumentConsulter', { 'id': e.instrument.id }) }}">{{e.instrument.intitule}}</a></td>
+                </tr>
+              {% else %}
+                <tr>
+                <td>Aucun emprunt n'a été trouvé.</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+      </div>
+{% endblock %}
+{{ block("footer", "footer.html.twig") }}
