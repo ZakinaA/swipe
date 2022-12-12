@@ -106,6 +106,8 @@ Inscription:
     controller: App\Controller\RegistrationController::register
 
 
+
+
     # config/routes.yaml
 
 app_logout:
