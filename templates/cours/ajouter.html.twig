@@ -1,8 +1,20 @@
-{{ block("header", "header.html.twig") }}</br>
+{{ block("header", "header.html.twig") }}
+{# templates/instrument/ajouter.html.twig #}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
 
-{# templates/cours/ajouter.html.twig #}
-{{ form_start(form) }}
-{{ form_widget(form) }}
-{{ form_end(form) }}
+<div class="form">
+<div class="card-body" align="left">
+    <div class="form-groupe">{{ form_row(form.libelle) }}</div>
+    <div class="form-groupe">{{ form_row(form.ageMini) }}</div>
+    <div class="form-groupe">{{ form_row(form.ageMaxi) }}</div>
+    <div class="form-groupe">{{ form_row(form.nbPlaces) }}</div>
+    <div class="form-groupe">{{ form_row(form.Heure_Debut) }}</div>
+    <div class="form-groupe">{{ form_row(form.Heure_Fin) }}</div>
+    <div class="form-groupe">{{ form_row(form.professeur) }}</div>
+    <div class="form-groupe">{{ form_row(form.typeCours) }}</div>
+    <div class="form-groupe">{{ form_row(form.instrument) }}</div>
+</div>
+</div>
 
+<button type="submit">Ajouter un cours</button>
 {{ block("footer", "footer.html.twig") }}
