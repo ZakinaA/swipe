@@ -48,9 +48,15 @@ instrumentAjouter:
     path: /instrument/ajouter
     controller: App\Controller\InstrumentController::ajouterInstrument
 
+
+instrumentSupprimer:
+    path: /instrument/supprimer/{id}
+    controller: App\Controller\InstrumentController::supprimerInstrument
+
 instrumentModifier:
     path: /instrument/modifier/{id}
     controller: App\Controller\InstrumentController::modifierInstrument
+
 
 #Classe Instrument
 

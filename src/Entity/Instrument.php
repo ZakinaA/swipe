@@ -51,6 +51,7 @@ class Instrument
 
     #[ORM\OneToMany(mappedBy: 'instrument', targetEntity: Accessoire::class)]
     private Collection $accessoires;
+    
 
     public function __construct()
     {
@@ -280,4 +281,5 @@ class Instrument
 
         return $this;
     }
+    
 }
