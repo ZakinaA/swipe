@@ -9,7 +9,10 @@ use App\Entity\Emprunter;
 use App\Entity\Instrument;
 use App\Entity\Eleve;
 use App\Entity\TypeInstrument;
+use Symfony\Component\HttpFoundation\Request;
 use Doctrine\Persistence\ManagerRegistry;
+use App\Form\EmpruntType;
+use Symfony\Component\Security\Core\Security;
 
 class EmpruntController extends AbstractController
 {
@@ -43,5 +46,34 @@ class EmpruntController extends AbstractController
             'emprunts' => $emprunt,]);
 
 	}
+
+    public function ajouter(ManagerRegistry $doctrine,Request $request,int $id){
+        $emprunt = new emprunter();
+    $form = $this->createForm(EmpruntType::class, $emprunt);
+    $form->handleRequest($request);
+    if ($form->isSubmitted() && $form->isValid()) {
+    
+
+        $user = $this->getUser();
+if(!empty($user)){
+$userId = $user->getEleve()->getId();
+}
+
+            $emprunt = $form->getData();
+            $eleve= $doctrine->getRepository(Eleve::class)->find($userId);
+            $emprunt->setEleve($eleve);
+            $entityManager = $doctrine->getManager();
+            $entityManager->persist($emprunt);
+            $entityManager->flush();
+    
+        return $this->render('emprunt/consulter.html.twig', ['emprunt' => $emprunt,
+        'eleve' => $eleve,]);
+    }
+    else
+        {
+            return $this->render('emprunt/ajouter.html.twig', array('form' => $form->createView(),));
+    }
+    }
+
 
 }

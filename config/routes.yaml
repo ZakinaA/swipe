@@ -113,6 +113,10 @@ empruntConsulter:
     path: /emprunt/consulter/{id}
     controller: App\Controller\EmpruntController::consulter
 
+empruntAjouter:
+    path: /emprunt/ajouter/{id}
+    controller: App\Controller\EmpruntController::ajouter
+
 #Connecté :
 ConnectéConsulter:
     path: /connecte/consulter/{mail}
