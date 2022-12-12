@@ -25,6 +25,7 @@ class AjouterCoursType extends AbstractType
             ->add('dateCours', TextType::class)
             ->add('Heure_Debut', TextType::class)
             ->add('Heure_Fin', TextType::class)
+            ->add('prix', TextType::class)
             ->add('professeur', EntityType::class, array('class' => 'App\Entity\Professeur','choice_label' => 'nom' ))
             ->add('typeCours', EntityType::class, array('class' => 'App\Entity\TypeCours','choice_label' => 'libelle' ))
             ->add('instrument', EntityType::class, array('class' => 'App\Entity\TypeInstrument','choice_label' => 'libelle' ))
