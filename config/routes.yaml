@@ -21,6 +21,9 @@ EleveConsulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulterEleve
 
+EleveSupprimer:
+    path: /eleve/supprimer/{id}
+    controller: App\Controller\EleveController::supprimerEleve
 
 #Route Instrument
 
