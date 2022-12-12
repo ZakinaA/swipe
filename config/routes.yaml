@@ -21,6 +21,9 @@ EleveConsulter:
     path: /eleve/consulter/{id}
     controller: App\Controller\EleveController::consulterEleve
 
+EleveSupprimer:
+    path: /eleve/supprimer/{id}
+    controller: App\Controller\EleveController::supprimerEleve
 
 #Route Instrument
 
@@ -82,6 +85,10 @@ coursConsulter:
 coursAjouter:
     path: /cours/ajouter
     controller: App\Controller\CoursController::ajouterCours
+
+coursModifier:
+    path: /cours/modifier/{id}
+    controller: App\Controller\CoursController::modifierCours
 
 
 # Login
