@@ -41,27 +41,34 @@
                 </tr>
             </table>
             <p>Pour plus d'information sur le responsable veuillez vous connecter sur le compte responsable de cette élève</p>
+
         <h6 style="color:black; width:fit-content">MES COURS</h6>
-        <p>
+        {% if eleve.inscriptions|length >0 %}
             <table class="table table-bordered text-black"style="width:auto">
                 <tr>
                     <th scope="col">Cours</th>
                     <th scope="col">Jour</th>
                     <th scope="col">Crénaux horaire</th>
                     <th scope="col">Nombre de paiements</th>
+                    <th scope="col">Prix du cours</th>
                 </tr>
-            {% for c in eleve.inscriptions %}
-                <tr>
-                    <td>{{ c.cours.libelle}}</td>
-                    <td>{{ c.cours.dateCours}}</td>
-                    <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
-                    <td>{{ c.nombredepaiements}}</td>
-                </tr>
+            
+                {% for c in eleve.inscriptions %}
+                    <tr>
+                        <td>{{ c.cours.libelle}}</td>
+                        <td>{{ c.cours.dateCours}}</td>
+                        <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
+                        <td>{{ c.nombredepaiements}}</td>
+                        <td>{{ c.cours.prix}}€</td>
+                    </tr>
                 {% endfor %}
             </table>
+            {% else %}
+                <p>Vous n'avez pas de cours</p>
+            {% endif %}
 
             <h6 style="color:black; width:fit-content">MES EMPRUNTS</h6>
-            <p>
+            {% if eleve.inscriptions|length >0 %}
             <table class="table table-bordered text-black"style="width:auto">
                 <tr>
                     <th scope="col">Id de l'instrument</th>
@@ -80,6 +87,9 @@
                 </tr>
                 {% endfor %}
             </table>
+            {% else %}
+                <p>Vous n'avez pas de cours</p>
+            {% endif %}
     {% else %}
         <p>Vous ne pouvez pas voir cela !</p>
     {% endif %}
