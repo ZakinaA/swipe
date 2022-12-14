@@ -12,18 +12,18 @@
     {% endif %}
 <div class="form">
     <form action="{{ "index" }}" method="post">
-        <label for="username">Email:</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}">
+        <label for="username">Email :</label>
+        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
 
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="_password">
+        <label for="password">Mot de passe :</label>
+        <input class="form-control" type="password" id="password" name="_password">
 
          <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
 
-        <input type="hidden" name="_target_path" value="/accueil">
+        <input type="hidden" name="_target_path" value="/accueil"></br>
 
-        <br><button type="submit">login</button>
+        <button class="btn btn-primary" type="submit">Connexion</button>
     </form>
 </div>
 {{ block("footer", "footer.html.twig") }}

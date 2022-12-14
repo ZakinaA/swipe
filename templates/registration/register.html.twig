@@ -8,16 +8,18 @@
 
 
     <h1>INSCRIPTION</h1>
+
 <div class="form">
     {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.mail) }}
         {{ form_row(registrationForm.plainPassword, {
             label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+        }) }}</br>
+        {{ form_row(registrationForm.agreeTerms) }}</br>
 
-        <button type="submit" class="btn">Register</button>
-    {{ form_end(registrationForm) }}
-    {{ block("footer", "footer.html.twig") }}
-</div>
+        <button type="submit" class="btn btn-primary">Register</button>
+    {{ form_end(registrationForm) }}</br>
+</div>    
+    
+{{ block("footer", "footer.html.twig") }}
 {% endblock %}
