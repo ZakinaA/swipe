@@ -54,11 +54,12 @@
                     {% for i in e.inscriptions %}
                         {% set prix = prix + i.cours.prix * i.nombreDePaiements %}
                     {% endfor %}
-                        <td><a href="#"><button type="button" class="btn btn-success">{{ prix }}€ à payer</button></td>
+                        <td>{{ prix }}€</td>
                         <td><a href="{{ path('EleveSupprimer',{ 'id': e.id }) }}"><button type="button" class="btn btn-outline-danger">Supprimer l'élève</button></td>
                     </tr>
                 {% endfor %}
                 </table>
+                <a href="{{ path('payer',{ 'id': responsable.id })}}"><button type="button" class="btn btn-success">Effectuer un paiement</button>
             {% else %}
                 <p>Vous n'avez pas d'élèves</p>
             {% endif %}
