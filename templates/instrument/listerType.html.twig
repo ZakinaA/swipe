@@ -2,7 +2,7 @@
 {% block body %}
 		<h5>TYPES D'INSTRUMENTS</h5>
 		<div class="emploi-temps">
-			<table class='table table-bordered text-black'>
+			<table style="background-color:rgba(0, 0, 0, 0.5);" class='table table-bordered text-white'>
 
 			<tr>
 				<td>Libelle</td>
@@ -23,7 +23,7 @@
 </table>
 
 {% if is_granted('ROLE_ADMIN') %}  
-   <a href="{{ path('instrumentAjouter') }}"><button type="button" class="btn btn-outline-info">Ajouter un Instrument</button></a>
+   <a href="{{ path('instrumentAjouter') }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-info">Ajouter un Instrument</button></a>
 {% endif %}  
    
 </div>

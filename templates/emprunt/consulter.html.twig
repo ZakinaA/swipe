@@ -3,7 +3,7 @@
 {% block body %}  
  <div class="emploi-temps">
  <div class="tableau">
-<h5 style="color:black;">PAGE DE CONSULTATION DE VOS EMPRUNTS</h5>
+<h5 style="color:white;">PAGE DE CONSULTATION DE VOS EMPRUNTS</h5>
  <center>
 
 <style>
@@ -12,9 +12,9 @@
 
  {% if app.user.id is defined and app.user.roles.0 == 'ROLE_ELEVE' and eleve.id == app.user.eleve.id  %}
 
-    <h6 style="color:black; width:fit-content">MES EMPRUNTS</h6>
+    <h6 style="color:white; width:fit-content">MES EMPRUNTS</h6>
     <p>
-    <table class="table table-bordered text-black"style="width:auto">
+    <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white"style="width:auto">
         <tr>
             <th scope="col">Instrument</th>
             <th scope="col">Date Emprunt</th>
@@ -32,7 +32,7 @@
     </table>
 
     {% if is_granted('ROLE_ELEVE') %}  
-   <a href="{{ path('empruntAjouter', { 'id': app.user.eleve.id  }) }}"><button type="button" class="btn btn-outline-dark">Je veux emprunter un instrument</button></a>
+   <a href="{{ path('empruntAjouter', { 'id': app.user.eleve.id  }) }}"><button type="button" style=" background-color: white; color: black;"  class="btn btn-outline-dark">Je veux emprunter un instrument</button></a>
     {% endif %}  
 
     {% else %}
