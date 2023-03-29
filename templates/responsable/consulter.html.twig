@@ -4,8 +4,8 @@
     <div class="tableau">
         <center>
         {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and responsable.id == app.user.responsable.id %}
-            <h6 style="color:black; width:fit-content;">MES INFORMATIONS</h6>
-            <table class="table table-bordered text-black " style="width:auto">
+            <h6 style="color:white; width:fit-content;">MES INFORMATIONS</h6>
+            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
                 <tr>
                     <th scope="col">Informations</th>
                     <th scope="col" colspan="2">Responsable</th>
@@ -37,11 +37,11 @@
             </table>
             {% if (responsable.eleves|length > 0) %}
                 {% if (responsable.eleves|length > 1) %}
-                    <h6 style="color:black; width:fit-content;">MES ELEVES</h6>
+                    <h6 style="color:white; width:fit-content;">MES ELEVES</h6>
                 {% else %}
-                    <h6 style="color:black; width:fit-content;">MON ELEVE</h6>
+                    <h6 style="color:white; width:fit-content;">MON ELEVE</h6>
                 {% endif %}
-                <table class="table table-bordered text-black " style="width:auto">
+                <table  style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
                     <tr>
                         <th scope="col">Nom Prenom</th>
                         <th scope="col">A payer</th>
@@ -59,7 +59,7 @@
                     </tr>
                 {% endfor %}
                 </table>
-                <a href="{{ path('payer',{ 'id': responsable.id })}}"><button type="button" class="btn btn-success">Effectuer un paiement</button>
+                <a href="{{ path('payer',{ 'id': responsable.id })}}"><button type="button" style=" background-color: white; color: black;" class="btn btn-success">Effectuer un paiement</button>
             {% else %}
                 <p>Vous n'avez pas d'élèves</p>
             {% endif %}

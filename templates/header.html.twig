@@ -15,8 +15,8 @@
 </head>
 <style>
   body{
-    color:black;
-    height:100%
+    color:white;
+    height:100%;
   }
   .logo{
       width: 60px;
@@ -47,12 +47,12 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  color: black;
+  color: white;
   text-align: center;
 }
 
 a{
-  color:black;
+  color:white;
   outline: none;
   text-decoration: none;
 }
@@ -61,17 +61,18 @@ a:hover{
 }
 
 .form {
-    margin-left: 600px;
+    margin: 0 auto;
     width: 12em;
 }
 </style>
-<body style="background: linear-gradient(#33FFF9 , #3933FF); width: 100%;     background-repeat: no-repeat; background-attachment: fixed;">
-    <header style="display: block; width: 100%; background-color:;">
+<body  style="background-color:black; background-image: url('https://images5.alphacoders.com/349/thumb-1920-349660.jpg'); backdrop-filter: blur(10px); width: 100%;   background-repeat: no-repeat; ">
+  <div class="bg-image">
+    <header style="display: block; width: 100%; background: rgba(0, 0, 0, 0.5);">
         <div class="container">
-            <div class="px-3 py-2  text-black">
+            <div class="px-3 py-2  text-white">
                 <div class="container">
                   <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-                    <a href="{{ path('route_accueil') }}" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-black text-decoration-none">
+                    <a href="{{ path('route_accueil') }}" class="d-flex align-items-center my-2 my-lg-0 me-lg-auto text-white text-decoration-none">
                       <img class="logo" src="{{ asset('img/logo-swipe.png')}}" alt="e-music" style="width: 60px;">
                     </a>
           
@@ -79,14 +80,14 @@ a:hover{
 
 {# EXEMPLE A SUPPRIMER ICI: DANS LE IF ON MET LE ROLE ET MET CE QU ON VEUT AFFICHER #}
                       <li>
-                        <a href="{{ path('route_accueil') }}" class="nav-link text-black">
+                        <a href="{{ path('route_accueil') }}" class="nav-link text-white">
                           <i class="fa-solid fa-house bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
                           Accueil
                         </a>
                       </li>
                       {% if is_granted('ROLE_ADMIN') %}  
                       <li>
-                        <a href="{{ path('empruntLister') }}" class="nav-link text-black">
+                        <a href="{{ path('empruntLister') }}" class="nav-link text-white">
                           <i class="fa-solid fa-book-bookmark bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
                           Tous les emprunts
                         </a>
@@ -95,7 +96,7 @@ a:hover{
  {# ----------------- #}   
                     {% if is_granted('ROLE_ELEVE') %}  
                       <li>
-                        <a href="{{ path('empruntConsulter', { 'id': app.user.eleve.id  }) }}" class="nav-link text-black">
+                        <a href="{{ path('empruntConsulter', { 'id': app.user.eleve.id  }) }}" class="nav-link text-white">
                           <i class="fa-solid fa-book-bookmark bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
                           Mes emprunts
                         </a>
@@ -103,20 +104,20 @@ a:hover{
                     {% endif %}  
                     {% if is_granted('ROLE_RESPONSABLE') %}  
                       <li>
-                        <a href="{{ path('InscriptionEleve') }}" class="nav-link text-black">
+                        <a href="{{ path('InscriptionEleve') }}" class="nav-link text-white">
                           <i class="fa-solid fa-child bi d-block mx-auto mb-1 size-icon"><use xlink:href="#speedometer1"></use></i>
                           Nouvel élève
                         </a>
                       </li>
                     {% endif %} 
                       <li>
-                        <a href="{{ path('instrumentListerType') }}" class="nav-link text-black">
+                        <a href="{{ path('instrumentListerType') }}" class="nav-link text-white">
                           <i class="fa-solid fa-guitar bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer2"></use></i>
                           Instruments
                         </a>
                       </li>
                       <li>
-                        <a href="{{ path('coursLister') }}" class="nav-link text-black">
+                        <a href="{{ path('coursLister') }}" class="nav-link text-white">
                           <i class="fa-solid fa-music bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Cours
                         </a>
@@ -124,13 +125,13 @@ a:hover{
                      {% if app.user.id is not defined %}
 
                       <li>
-                        <a href="{{ path('app_login') }}" class="nav-link text-black">
+                        <a href="{{ path('app_login') }}" class="nav-link text-white">
                           <i class="fa-solid fa-user bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Se Connecter
                         </a>
                       </li>
                       <li>
-                        <a href="{{ path('Inscription') }}" class="nav-link text-black">
+                        <a href="{{ path('Inscription') }}" class="nav-link text-white">
                           <i class="fa-solid fa-user-plus bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Créer un compte
                         </a>
@@ -139,7 +140,7 @@ a:hover{
                       {% else %}
 
                       <li>
-                        <a href="{{path('app_logout')}}" class="nav-link text-black">
+                        <a href="{{path('app_logout')}}" class="nav-link text-white">
                           <i class="fa-regular fa-user bi d-block mx-auto mb-1 size-icon" width="24" height="24"><use xlink:href="#speedometer3"></use></i>
                           Se Déconnecter
                         </a>
