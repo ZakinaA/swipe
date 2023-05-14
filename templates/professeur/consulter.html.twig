@@ -1,71 +1,98 @@
 {{ block("header", "header.html.twig") }}
 
-{% block body %}  
- <div class="emploi-temps">
- <div class="tableau">
- {% if app.user.id is defined and app.user.roles.0 == 'ROLE_PROFESSEUR' and professeur.id == app.user.professeur.id %}
-        <h5 style="color:white;">PAGE DE CONSULTATION D'UN PROFESSEUR</h5>
-        <center>
-        <h6 style="color:white; width:fit-content;">MES INFORMATIONS</h6>
-        <p>
+{% block body %}
+	<div class="emploi-temps bg center">
+		<div class="tableau">
+			{% if app.user.id is defined and app.user.roles.0 == 'ROLE_PROFESSEUR' and professeur.id == app.user.professeur.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
 
-            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
-                <tr>
-                    <th scope="col">Informations</th>
-                    <th scope="col" colspan="2">Professeur</th>
-                </tr>
-                <tr>
-                    <td>Nom : </td>
-                    <td>{{professeur.nom}}</td>
-                </tr>
-                <tr>
-                    <td>Prénom : </td>
-                    <td>{{professeur.prenom}}</td>
-                </tr>
-                <tr>
-                    <td>rue : </td>
-                    <td>{{professeur.rue}}</td>
-                </tr>
-                <tr>
-                    <td>email : </td>
-                    <td>{{professeur.email}}</td>
-                </tr>
-                <tr>
-                    <td>Téléphone : </td>
-                    <td>{{professeur.tel}}</td>
-                </tr>
-                <tr>
-                    <td>ville : </td>
-                    <td>{{professeur.ville}}</td>
-                </tr>
-                <tr>
-                    <td>Code Postal : </td>
-                    <td>{{professeur.codeP}}</td>
-                </tr>
-            </table>
+				<center>
+					<h6 style="width:fit-content;">MES INFORMATIONS</h6>
+					<p>
 
-        <h6 style="color:white; width:fit-content">MES COURS</h6>
-        <p>
-            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white"style="width:auto">
-                <tr>
-                    <th scope="col">Cours</th>
-                    <th scope="col">Jour</th>
-                    <th scope="col">Crénaux horaire</th>
-                    <th scope="col">Nombre de place</th>
-                </tr>
-            {% for c in cours %}
-                <tr>
-                    <td><a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{ c.libelle}}</a></td>
-                    <td>{{ c.dateCours}}</td>
-                    <td>{{ c.heureDebut}}-{{ c.heureFin}}</td>
-                    <td>{{ c.nbPlaces}}</td>
-                </tr>
-                {% endfor %}
-        </table>
-    {% else %}
-            <p>Vous ne pouvez pas voir cela !</p>
-    {% endif %}
- </div>
- </div>
-{% endblock %}
-{{ block("footer", "footer.html.twig") }}
+						<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
+							<tr>
+								<th scope="col">Informations</th>
+								<th scope="col" colspan="2">Professeur</th>
+							</tr>
+							<tr>
+								<td>Nom :
+								</td>
+								<td>{{professeur.nom}}</td>
+							</tr>
+							<tr>
+								<td>Prénom :
+								</td>
+								<td>{{professeur.prenom}}</td>
+							</tr>
+							<tr>
+								<td>rue :
+								</td>
+								<td>{{professeur.rue}}</td>
+							</tr>
+							<tr>
+								<td>email :
+								</td>
+								<td>{{professeur.email}}</td>
+							</tr>
+							<tr>
+								<td>Téléphone :
+								</td>
+								<td>{{professeur.tel}}</td>
+							</tr>
+							<tr>
+								<td>ville :
+								</td>
+								<td>{{professeur.ville}}</td>
+							</tr>
+							<tr>
+								<td>Code Postal :
+								</td>
+								<td>{{professeur.codeP}}</td>
+							</tr>
+						</table>
+
+						<a href="{{ path('professeurModifier',{ 'id': professeur.id }) }}">
+							<button type="button" class="btn btn-outline-danger">Modifier mes données</button>
+						</a>
+
+						<h6 style="width:fit-content">MES COURS</h6>
+					</p>
+					<p>
+						<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white" style="width:auto">
+							<tr>
+								<th scope="col">Cours</th>
+								<th scope="col">Jour</th>
+								<th scope="col">Crénaux horaire</th>
+								<th scope="col">Nombre de place</th>
+							</tr>
+							{% for c in cours %}
+								<tr>
+									<td>
+										<a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{ c.libelle}}</a>
+									</td>
+									<td>{{ c.dateCours}}</td>
+									<td>{{ c.heureDebut}}-{{ c.heureFin}}</td>
+									<td>{{ c.nbPlaces}}</td>
+									<td>
+										<a href="{{ path('coursModifier',{ 'id': c.id }) }}">
+											<button type="button" class="btn btn-outline-primary">modifier</button>
+										</a>
+									</td>
+									<td>
+										<a href="{{ path('coursSupprimer',{ 'id': c.id }) }}">
+											<button type="button" class="btn btn-outline-danger">supprimer</button>
+										</a>
+									</td>
+								</tr>
+							{% endfor %}
+						</table>
+						<a href="{{ path('coursAjouter') }}">
+							<button type="button" class="btn btn-outline-success">ajouter</button>
+						</a>
+					{% else %}
+						<p>Vous ne pouvez pas voir cela !</p>
+					{% endif %}
+				</div>
+			</div>
+		{% endblock %}
+		{{ block("footer", "footer.html.twig") }}

@@ -2,29 +2,31 @@
 
 
 {% block body %}
-      <div class="emploi-temps">
-        <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
-            <thead>
-              <tr>
-                <th scope="col">Intitule</th>
-                <th scope="col">Prix Achat</th>
-                <th scope="col">Date Achat</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for c in instrument %}
-                <tr>
-                    <td><a href="{{ path('instrumentConsulter', { 'id': c.id }) }}">{{c.intitule}}</a></td>
-                    <td>{{c.prixAchat}}</td>
-                    <td>{{c.dateAchat|date('d/m/Y') }}</td>
-                </tr>
-              {% else %}
-                <tr>
-                <td>Aucun cours n'a été trouvé.</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-        </table>
-      </div>
+	<div class="emploi-temps center bg">
+		<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
+			<thead>
+				<tr>
+					<th scope="col">Intitule</th>
+					<th scope="col">Prix Achat</th>
+					<th scope="col">Date Achat</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for c in instrument %}
+					<tr>
+						<td>
+							<a href="{{ path('instrumentConsulter', { 'id': c.id }) }}">{{c.intitule}}</a>
+						</td>
+						<td>{{c.prixAchat}}</td>
+						<td>{{c.dateAchat|date('d/m/Y') }}</td>
+					</tr>
+				{% else %}
+					<tr>
+						<td>Aucun cours n'a été trouvé.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}
 {{ block("footer", "footer.html.twig") }}

@@ -1,107 +1,122 @@
 {{ block("header", "header.html.twig") }}
 
-{% block body %}  
- <div class="emploi-temps">
- <div class="tableau">
- {% if app.user.id is defined and app.user.roles.0 == 'ROLE_ELEVE' and eleve.id == app.user.eleve.id or app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
-<h5 style="color:white;">PAGE DE CONSULTATION D'UN ELEVE</h5>
- <center>
- 
-        <h6 style="color:white; width:fit-content;">MES INFORMATIONS</h6>
-        <p>
+{% block body %}
+	<div class="emploi-temps center">
+		<div class="tableau">
+			{% if app.user.id is defined and app.user.roles.0 == 'ROLE_ELEVE' and eleve.id == app.user.eleve.id or app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
+				<h5 style="color:white;">PAGE DE CONSULTATION D'UN ELEVE</h5>
+				<center>
+					<div class="bg">
 
-            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
-                <tr>
-                    <th scope="col">Informations</th>
-                    <th scope="col" colspan="2">Elève</th>
-                </tr>
-                <tr>
-                    <td>Nom : </td>
-                    <td>{{eleve.nom}}</td>
-                </tr>
-                <tr>
-                    <td>Prénom : </td>
-                    <td>{{eleve.prenom}}</td>
-                </tr>
-                <tr>
-                    <td>Date de naissance : </td>
-                    <td>{{eleve.date_naiss|date("d/m/Y")}}</td>
-                </tr>
-            </table>
+						<h6 style="width:fit-content;">MES INFORMATIONS</h6>
+						<p>
 
+							<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
+								<tr>
+									<th scope="col">Informations</th>
+									<th scope="col" colspan="2">Elève</th>
+								</tr>
+								<tr>
+									<td>Nom :
+									</td>
+									<td>{{eleve.nom}}</td>
+								</tr>
+								<tr>
+									<td>Prénom :
+									</td>
+									<td>{{eleve.prenom}}</td>
+								</tr>
+								<tr>
+									<td>Date de naissance :
+									</td>
+									<td>{{eleve.dateNaiss|date("d/m/Y")}}</td>
+								</tr>
+							</table>
 
-            <h6 style="color:white; width:fit-content;">MON RESPONSABLE</h6>
-            <p>
-            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white" style="width:auto">
-                <tr>
-                    <th scope="col">Responsable</th>
-                </tr>
-                <tr>
-                    <td>{{eleve.responsable.nom}} {{eleve.responsable.prenom}}</td>
-                </tr>
-            </table>
-            <p>Pour plus d'information sur le responsable veuillez vous connecter sur le compte responsable de cette élève</p>
+							<a href="{{ path('eleveModifier',{ 'id': eleve.id }) }}">
+								<button type="button" class="btn btn-outline-danger">Modifier mes données</button>
+							</a>
 
-        <h6 style="color:white; width:fit-content">MES COURS</h6>
-        {% if eleve.inscriptions|length >0 %}
-            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white"style="width:auto">
-                <tr>
-                    <th scope="col">Cours</th>
-                    <th scope="col">Jour</th>
-                    <th scope="col">Crénaux horaire</th>
-                    <th scope="col">Nombre de paiements</th>
-                    <th scope="col">Prix du cours</th>
-                     {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
+							<h6 style="width:fit-content;">MON RESPONSABLE</h6>
+						</p>
+						<p>
+							<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white" style="width:auto">
+								<tr>
+									<td>{{eleve.responsable.nom}}
+										{{eleve.responsable.prenom}}</td>
+								</tr>
+							</table>
+						</p>
+						<p>Pour plus d'information sur le responsable veuillez vous connecter sur le compte responsable de cette élève</p>
 
-                         <th scope="col">  </th>
-                    {% endif %}
-                </tr>
-            
-                {% for c in eleve.inscriptions %}
-                    <tr>
-                        <td>{{ c.cours.libelle}}</td>
-                        <td>{{ c.cours.dateCours}}</td>
-                        <td>{{ c.cours.heuredebut}} --> {{ c.cours.heurefin}}</td>
-                        <td>{{ c.nombredepaiements}}</td>
-                        <td>{{ c.cours.prix}}€</td>
-                 {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
-                           <th scope="col"><a href="{{ path('EleveCoursSupprimer',{ 'id': c.id }) }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-danger">Supprimer du cours</button></a></th>
-                        {% endif %}
-                    </tr>
-                {% endfor %}
-            </table>
-            {% else %}
-                <p>Vous n'avez pas de cours</p>
-            {% endif %}
+						<h6 style="width:fit-content">MES COURS</h6>
+						{% if eleve.inscriptions|length >0 %}
+							<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white" style="width:auto">
+								<tr>
+									<th scope="col">Cours</th>
+									<th scope="col">Jour</th>
+									<th scope="col">Crénaux horaire</th>
+									<th scope="col">Nombre de paiements</th>
+									<th scope="col">Prix du cours</th>
+									{% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
 
-            <h6 style="color:white; width:fit-content">MES EMPRUNTS</h6>
-            {% if eleve.inscriptions|length >0 %}
-            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white"style="width:auto">
-                <tr>
-                    <th scope="col">Id de l'instrument</th>
-                    <th scope="col">Instrument</th>
-                    <th scope="col">Date Emprunt</th>
-                    <th scope="col">Date Fin</th>
-                    <th scope="col">Etat</th>
-                </tr>
-                {% for i in eleve.emprunters %}
-                <tr>
-                    <td>{{ i.instrument.id}}</td>
-                    <td>{{ i.instrument.intitule}}</td>
-                    <td>{{ i.datedebut|date("d/m/Y")}}</td>
-                    <td>{{ i.dateretour|date("d/m/Y")}}</td>
-                    <td>{{ i.instrument.etat.libelle}}</td>
-                </tr>
-                {% endfor %}
-            </table>
-            {% else %}
-                <p>Vous n'avez pas de cours</p>
-            {% endif %}
-    {% else %}
-        <p>Vous ne pouvez pas voir cela !</p>
-    {% endif %}
- </div>
- </div>
- </center>
+										<th scope="col"></th>
+									{% endif %}
+								</tr>
+
+								{% for c in eleve.inscriptions %}
+									<tr>
+										<td>{{ c.cours.libelle}}</td>
+										<td>{{ c.cours.dateCours}}</td>
+										<td>{{ c.cours.heuredebut}}
+											-->
+											{{ c.cours.heurefin}}</td>
+										<td>{{ c.nombredepaiements}}</td>
+										<td>{{ c.cours.prix}}€</td>
+										{% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and eleve.responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
+											<th scope="col">
+												<a href="{{ path('EleveCoursSupprimer',{ 'id': c.id }) }}">
+													<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-danger">Supprimer du cours</button>
+												</a>
+											</th>
+										{% endif %}
+									</tr>
+								{% endfor %}
+							</table>
+						{% else %}
+							<p>Vous n'avez pas de cours</p>
+						{% endif %}
+
+						<h6 style="width:fit-content">MES EMPRUNTS</h6>
+						{% if eleve.emprunters|length >0 %}
+							{{ block("body", "emprunt/consulter.html.twig") }}
+
+							{# <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white" style="width:auto">
+																																																																																																			<tr>
+																																																																																																				<th scope="col">Id de l'instrument</th>
+																																																																																																				<th scope="col">Instrument</th>
+																																																																																																				<th scope="col">Date Emprunt</th>
+																																																																																																				<th scope="col">Date Fin</th>
+																																																																																																				<th scope="col">Etat</th>
+																																																																																																			</tr>
+																																																																																																			{% for i in eleve.emprunters %}
+																																																																																																				<tr>
+																																																																																																					<td>{{ i.instrument.id}}</td>
+																																																																																																					<td>{{ i.instrument.intitule}}</td>
+																																																																																																					<td>{{ i.datedebut|date("d/m/Y")}}</td>
+																																																																																																					<td>{{ i.dateretour|date("d/m/Y")}}</td>
+																																																																																																					<td>{{ i.instrument.etat.libelle}}</td>
+																																																																																																				</tr>
+																																																																																																			{% endfor %} #}
+						</table>
+					{% else %}
+						<p>Vous n'avez pas d'emprunts</p>
+					{% endif %}
+				{% else %}
+					<p>Vous ne pouvez pas voir cela !</p>
+				{% endif %}
+			</div>
+		</div>
+	</center>
 {% endblock %}
 {{ block("footer", "footer.html.twig") }}

@@ -1,63 +1,110 @@
 {{ block("header", "header.html.twig") }}
 
 
-{% block body %}    
-<h5>INSTRUMENT n°{{instrument.id}}</h5>
-<div class="emploi-temps">
-   <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white" style="width:auto">
-      <tr><td>Id: </td><td>{{instrument.id}} </td><td>image</td></tr>
-	   <tr><td>Intitule: </td><td>{{instrument.intitule}}</td>
-         <td  rowspan="8" class="imgInst">
-				{% set photo = 'img/instrument/'~ instrument.id ~'.jpg' %}
-				<span class="zoom"><img src="{{ asset(photo | trans )}}" width=300px title="{{ instrument.intitule }}" alt="{{ instrument.intitule }}"/></span>
-         </td>
-      </tr>
-      <tr><td>Prix d'achat: </td><td>{{instrument.prixachat}} </td></tr>
-      <tr><td>Date d'achat: </td><td>{{instrument.dateachat|date("d/m/Y")}}</td></tr>
-	   <tr><td>Utilisation: </td><td> {{instrument.utilisation}}</td></tr>
-      <tr><td>Marque: </td><td> {{instrument.marque.nom}}</td></tr>
-      <tr><td>Couleur: </td><td> {{instrument.couleur.libelle}}</td></tr>
-      <tr><td>Etat actuel: </td><td> {{instrument.etat.libelle}}</td></tr>
-      <tr><td>Type de l'instrument: </td><td> {{instrument.typeInstrument.libelle}}</td></tr>
-   </table>
+{% block body %}
+	<h5>INSTRUMENT n°{{instrument.id}}</h5>
+	<div class="emploi-temps center bg">
+		<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white" style="width:auto">
+			<tr>
+				<td>Id:
+				</td>
+				<td>{{instrument.id}}
+				</td>
+				<td>image</td>
+			</tr>
+			<tr>
+				<td>Intitule:
+				</td>
+				<td>{{instrument.intitule}}</td>
+				<td rowspan="8" class="imgInst">
+					{% set photo = 'img/instrument/'~ instrument.id ~'.jpg' %}
+					<span class="zoom"><img src="{{ asset(photo | trans )}}" width="300px" title="{{ instrument.intitule }}" alt="{{ instrument.intitule }}"/></span>
+				</td>
+			</tr>
+			<tr>
+				<td>Prix d'achat:
+				</td>
+				<td>{{instrument.prixachat}}
+				</td>
+			</tr>
+			<tr>
+				<td>Date d'achat:
+				</td>
+				<td>{{instrument.dateachat|date("d/m/Y")}}</td>
+			</tr>
+			<tr>
+				<td>Utilisation:
+				</td>
+				<td>
+					{{instrument.utilisation}}</td>
+			</tr>
+			<tr>
+				<td>Marque:
+				</td>
+				<td>
+					{{instrument.marque.nom}}</td>
+			</tr>
+			<tr>
+				<td>Couleur:
+				</td>
+				<td>
+					{{instrument.couleur.libelle}}</td>
+			</tr>
+			<tr>
+				<td>Etat actuel:
+				</td>
+				<td>
+					{{instrument.etat.libelle}}</td>
+			</tr>
+			<tr>
+				<td>Type de l'instrument:
+				</td>
+				<td>
+					{{instrument.typeInstrument.libelle}}</td>
+			</tr>
+		</table>
 
-{% if is_granted ('ROLE_ADMIN') %}
-   <a href="{{ path('instrumentSupprimer', { 'id': instrument.id }) }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-danger">Supprimer un Instrument</button></a>
-{% endif %}
-   <a href="{{ path('instrumentConsulterMaintenance', { 'id': instrument.id }) }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-info">Historique des Interventions</button></a>
+		{% if is_granted ('ROLE_ADMIN') %}
+			<a href="{{ path('instrumentSupprimer', { 'id': instrument.id }) }}">
+				<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-danger">Supprimer un Instrument</button>
+			</a>
+		{% endif %}
+		<a href="{{ path('instrumentConsulterMaintenance', { 'id': instrument.id }) }}">
+			<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-info">Historique des Interventions</button>
+		</a>
 
 
-{% if is_granted('ROLE_ADMIN') %}  
-   <a href="{{ path('instrumentModifier',{ 'id': instrument.id }) }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-info">Modifier un Instrument</button></a>
-{% endif %}
-</div>
+		{% if is_granted('ROLE_ADMIN') %}
+			<a href="{{ path('instrumentModifier',{ 'id': instrument.id }) }}">
+				<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-info">Modifier un Instrument</button>
+			</a>
+		{% endif %}
+	</div>
 
 
+	<h5>Accessoires</h5>
+	<div class="emploi-temps center bg">
+		{% if instrument.accessoires|length > 0 %}
+			<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
 
-<h5>Accessoires</h5>
-      <div class="emploi-temps">
-
-      {% if instrument.accessoires|length > 0 %}
-        <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
-
-            <thead>
-              <tr>
-                <th scope="col">Libelle</th>
-                <th scope="col">Etat</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for a in instrument.accessoires %}
-                <tr>
-                    <td>{{a.libelle}}</td>
-                    <td>{{a.etat.libelle}}</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-        </table>
-      {% else %}
-        Aucun accessoire n'a été trouvé.
-      {% endif %}
-      </div>
+				<thead>
+					<tr>
+						<th scope="col">Libelle</th>
+						<th scope="col">Etat</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for a in instrument.accessoires %}
+						<tr>
+							<td>{{a.libelle}}</td>
+							<td>{{a.etat.libelle}}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% else %}
+			Aucun accessoire n'a été trouvé.
+		{% endif %}
+	</div>
 {% endblock %}
 {{ block("footer", "footer.html.twig") }}

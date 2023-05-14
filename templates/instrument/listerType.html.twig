@@ -1,8 +1,8 @@
 {{ block('header', 'header.html.twig')}}
 {% block body %}
-		<h5>TYPES D'INSTRUMENTS</h5>
-		<div class="emploi-temps">
-			<table style="background-color:rgba(0, 0, 0, 0.5);" class='table table-bordered text-white'>
+	<h5>TYPES D'INSTRUMENTS</h5>
+	<div class="emploi-temps center bg">
+		<table style="background-color:rgba(0, 0, 0, 0.5);" class='table table-bordered text-white'>
 
 			<tr>
 				<td>Libelle</td>
@@ -11,21 +11,27 @@
 
 			{% for i in pInstruments %}
 
-			<tr>
-				<td><a href="{{ path('instrumentConsulterType', { 'id': i.id }) }}">{{ i.libelle }}</a></td>
-				<td><a href="{{ path('instrumentListerTypeByID', { 'id': i.classeInstrument.id }) }}">{{ i.classeinstrument.libelle }}</a></td>
-				
-	{% else %}
-			<tr>
-				<td>Aucun instrument n'a été trouvé.</td>
-			</tr>
-	{% endfor %}
-</table>
+				<tr>
+					<td>
+						<a href="{{ path('instrumentConsulterType', { 'id': i.id }) }}">{{ i.libelle }}</a>
+					</td>
+					<td>
+						<a href="{{ path('instrumentListerTypeByID', { 'id': i.classeInstrument.id }) }}">{{ i.classeinstrument.libelle }}</a>
+					</td>
 
-{% if is_granted('ROLE_ADMIN') %}  
-   <a href="{{ path('instrumentAjouter') }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-info">Ajouter un Instrument</button></a>
-{% endif %}  
-   
-</div>
-{% endblock %}
-{{ block('footer', 'footer.html.twig') }}
+				{% else %}
+					<tr>
+						<td>Aucun instrument n'a été trouvé.</td>
+					</tr>
+				{% endfor %}
+			</table>
+
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('instrumentAjouter') }}">
+					<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-info">Ajouter un Instrument</button>
+				</a>
+			{% endif %}
+
+		</div>
+	{% endblock %}
+	{{ block('footer', 'footer.html.twig') }}

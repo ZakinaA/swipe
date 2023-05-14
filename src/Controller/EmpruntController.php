@@ -24,56 +24,67 @@ class EmpruntController extends AbstractController
         ]);
     }
 
-    public function lister(ManagerRegistry $doctrine){
+    public function lister(ManagerRegistry $doctrine)
+    {
         $repository = $doctrine->getRepository(Emprunter::class);
         $emprunt = $repository->findAll();
         return $this->render('emprunt/lister.html.twig', [
-            'pEmprunt' => $emprunt,]);	
+            'pEmprunt' => $emprunt,
+        ]);
     }
 
-    public function consulter(ManagerRegistry $doctrine, int $id){
+    public function consulter(ManagerRegistry $doctrine, int $id)
+    {
 
-		$eleve= $doctrine->getRepository(Eleve::class)->find($id);
-        $emprunt= $doctrine->getRepository(Emprunter::class)->findAll();
+        $eleve = $doctrine->getRepository(Eleve::class)->find($id);
+        $emprunt = $doctrine->getRepository(Emprunter::class)->findAll();
 
-		if (!$eleve) {
-			throw $this->createNotFoundException(
-            'Aucun eleve trouvé avec le numéro '.$id
-			);
-		}
-		return $this->render('emprunt/consulter.html.twig', [
+        if (!$eleve) {
+            throw $this->createNotFoundException(
+                'Aucun eleve trouvé avec le numéro ' . $id
+            );
+        }
+        return $this->render('emprunt/consulter.html.twig', [
             'eleve' => $eleve,
-            'emprunts' => $emprunt,]);
+            'emprunts' => $emprunt,
+        ]);
+    }
 
-	}
-
-    public function ajouter(ManagerRegistry $doctrine,Request $request,int $id){
+    public function ajouter(ManagerRegistry $doctrine, Request $request, int $id)
+    {
         $emprunt = new emprunter();
-    $form = $this->createForm(EmpruntType::class, $emprunt);
-    $form->handleRequest($request);
-    if ($form->isSubmitted() && $form->isValid()) {
-    
+        $form = $this->createForm(EmpruntType::class, $emprunt);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
 
-        $user = $this->getUser();
-if(!empty($user)){
-$userId = $user->getEleve()->getId();
-}
+
+            $user = $this->getUser();
+            if (!empty($user)) {
+                $userId = $user->getEleve()->getId();
+            }
 
             $emprunt = $form->getData();
-            $eleve= $doctrine->getRepository(Eleve::class)->find($userId);
+            $eleve = $doctrine->getRepository(Eleve::class)->find($userId);
             $emprunt->setEleve($eleve);
             $entityManager = $doctrine->getManager();
             $entityManager->persist($emprunt);
             $entityManager->flush();
-    
-        return $this->render('emprunt/consulter.html.twig', ['emprunt' => $emprunt,
-        'eleve' => $eleve,]);
-    }
-    else
-        {
+
+            return $this->render('emprunt/consulter.html.twig', [
+                'emprunt' => $emprunt,
+                'eleve' => $eleve,
+            ]);
+        } else {
             return $this->render('emprunt/ajouter.html.twig', array('form' => $form->createView(),));
-    }
+        }
     }
 
-
+    public function supprimer(ManagerRegistry $doctrine, int $id)
+    {
+        $emprunt = $doctrine->getRepository(Emprunter::class)->find($id);
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($emprunt);
+        $entityManager->flush();
+        return $this->redirectToRoute('empruntConsulter', ['id' => $this->getUser()->getEleve()->getId()]);
+    }
 }

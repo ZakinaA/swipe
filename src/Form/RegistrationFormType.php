@@ -44,7 +44,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('responsable', ResponsableType::class)
-        ;
+            ->add('eleve', EleveType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void

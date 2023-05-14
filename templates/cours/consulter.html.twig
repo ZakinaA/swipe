@@ -1,37 +1,50 @@
 {{ block("header", "header.html.twig") }}
-{% block body %}  
-      <h5>cours</h5>
-      <div class="emploi-temps">
-        <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
-            <thead>
-              <tr>
-                <th scope="col">Jour</th>
-                <th scope="col">Horaires</th>
-                <th scope="col">Instrument</th>
-                <th scope="col">Professeur</th>
-                <th scope="col">Type cours</th>
-                <th scope="col">Nombres de places</th>
-                <th scope="col">Age</th>
-                <th scope="col">Prix</th>
-              </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{{cours.dateCours}}</td>
-                    <td>{{cours.heureDebut}} à {{cours.heureFin}}</td>
-                    <td>{{cours.instrument.libelle}}</td>
-                    <td><a href="{{ path('ProfesseurConsulter', { 'id': cours.professeur.id }) }}">{{cours.professeur.nom}}</a></td>
-                    <td>{{cours.typeCours.libelle}}</td>
-                    <td>{{cours.nbPlaces}}</td>
-                    <td>de {{cours.ageMini}} à {{cours.ageMaxi}}</td>
-                    <td>{{cours.prix}}€</td>
-                </tr>
-                
-            </tbody>
-        </table>
-        {% if is_granted('ROLE_ADMIN') %}  
-        <a href="{{ path('coursModifier', { 'id': cours.id }) }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-dark">Modifier le cours</button></a>
-        {% endif %}
-      </div>
-      {% endblock %}
+{% block body %}
+	<h5>COURS</h5>
+	<div class="bg center">
+		<div class="emploi-temps">
+			<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
+				<thead>
+					<tr>
+						<th scope="col">Jour</th>
+						<th scope="col">Horaires</th>
+						<th scope="col">Instrument</th>
+						<th scope="col">Professeur</th>
+						<th scope="col">Type cours</th>
+						<th scope="col">Nombres de places</th>
+						<th scope="col">Age</th>
+						<th scope="col">Prix</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>{{cours.dateCours}}</td>
+						<td>{{cours.heureDebut}}
+							à
+							{{cours.heureFin}}</td>
+						<td>{{cours.instrument.libelle}}</td>
+						<td>{{cours.professeur.nom}}
+						</td>
+						<td>{{cours.typeCours.libelle}}</td>
+						<td>{{cours.nbPlaces}}</td>
+						<td>de
+							{{cours.ageMini}}
+							à
+							{{cours.ageMaxi}}</td>
+						<td>{{cours.prix}}€</td>
+					</tr>
+
+				</tbody>
+			</table>
+			{% if is_granted('ROLE_ADMIN') %}
+				<a href="{{ path('coursModifier', { 'id': cours.id }) }}">
+					<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-dark">Modifier le cours</button>
+				</a>
+				<a href="{{ path('coursSupprimer', { 'id': cours.id }) }}">
+					<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-danger">Supprimer</button>
+				</a>
+			{% endif %}
+		</div>
+	</div>
+{% endblock %}
 {{ block("footer", "footer.html.twig") }}

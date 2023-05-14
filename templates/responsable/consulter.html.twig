@@ -1,77 +1,96 @@
 {{ block("header", "header.html.twig") }}
 {% block body %}
-<div class="emploi-temps">
-    <div class="tableau">
-        <center>
-        {% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and responsable.id == app.user.responsable.id %}
-            <h6 style="color:white; width:fit-content;">MES INFORMATIONS</h6>
-            <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
-                <tr>
-                    <th scope="col">Informations</th>
-                    <th scope="col" colspan="2">Responsable</th>
-                </tr>
-                <tr>
-                    <td>Nom : </td>
-                    <td>{{responsable.nom}}</td> 
-                </tr>
-                <tr>
-                    <td>Prénom : </td>
-                    <td>{{responsable.prenom}}</td>
-                </tr>
-                <tr>
-                    <td>Adresse : </td>
-                    <td>{{responsable.rue}} {{responsable.codeP}} {{responsable.ville}}</td>
-                </tr>
-                <tr>
-                    <td>Email : </td>
-                    <td>{{responsable.email}}</td>
-                </tr>
-                <tr>
-                    <td>Téléphone : </td>
-                    <td>{{responsable.tel}}</td>
-                </tr>
-                <tr>
-                    <td>Tranche : </td>
-                    <td>{{responsable.tranche.quotient}}</td>
-                </tr>
-            </table>
-            {% if (responsable.eleves|length > 0) %}
-                {% if (responsable.eleves|length > 1) %}
-                    <h6 style="color:white; width:fit-content;">MES ELEVES</h6>
-                {% else %}
-                    <h6 style="color:white; width:fit-content;">MON ELEVE</h6>
-                {% endif %}
-                <table  style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
-                    <tr>
-                        <th scope="col">Nom Prenom</th>
-                        <th scope="col">A payer</th>
-                        <th scope="col"></th>
-                    </tr>
-                {% for e in responsable.eleves %}            
-                    <tr>
-                        <td><a href="{{ path('EleveConsulter', { 'id': e.id }) }}">{{e.nom}} {{e.prenom}}</a></td>
-                    {% set prix = 0 %}
-                    {% for i in e.inscriptions %}
-                        {% set prix = prix + i.cours.prix * i.nombreDePaiements %}
-                    {% endfor %}
-                        <td>{{ prix }}€</td>
-                        <td><a href="{{ path('EleveSupprimer',{ 'id': e.id }) }}"><button type="button" class="btn btn-outline-danger">Supprimer l'élève</button></td>
-                    </tr>
-                {% endfor %}
-                </table>
-                <a href="{{ path('payer',{ 'id': responsable.id })}}"><button type="button" style=" background-color: white; color: black;" class="btn btn-success">Effectuer un paiement</button>
-            {% else %}
-                <p>Vous n'avez pas d'élèves</p>
-            {% endif %}
-        {% else %}
-            <p>Vous ne pouvez pas voir cela !</p>
-        {% endif %}
+	<div class="emploi-temps center bg">
+		<div class="tableau">
+			<center>
+				{% if app.user.id is defined and app.user.roles.0 == 'ROLE_RESPONSABLE' and responsable.id == app.user.responsable.id or app.user.id is defined and app.user.roles.0 == 'ROLE_ADMIN'%}
 
-        </center>
-    </div>
-</div>
+					<h6 style="width:fit-content;">MES INFORMATIONS</h6>
+					<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
+						<tr>
+							<th scope="col">Informations</th>
+							<th scope="col" colspan="2">Responsable</th>
+						</tr>
+						<tr>
+							<td>Nom :
+							</td>
+							<td>{{responsable.nom}}</td>
+						</tr>
+						<tr>
+							<td>Prénom :
+							</td>
+							<td>{{responsable.prenom}}</td>
+						</tr>
+						<tr>
+							<td>Adresse :
+							</td>
+							<td>{{responsable.rue}}
+								{{responsable.codeP}}
+								{{responsable.ville}}</td>
+						</tr>
+						<tr>
+							<td>Email :
+							</td>
+							<td>{{responsable.email}}</td>
+						</tr>
+						<tr>
+							<td>Téléphone :
+							</td>
+							<td>{{responsable.tel}}</td>
+						</tr>
+						<tr>
+							<td>Tranche :
+							</td>
+							<td>{{responsable.tranche.quotient}}</td>
+						</tr>
+					</table>
 
+					<a href="{{ path('responsableModifier',{ 'id': responsable.id }) }}">
+						<button type="button" class="btn btn-outline-primary">Modifier mes données</button>
+					</a>
 
-{% endblock %}
+					{% if (responsable.eleves|length > 0) %}
+						{% if (responsable.eleves|length > 1) %}
+							<h6 style="width:fit-content;">MES ELEVES</h6>
+						{% else %}
+							<h6 style="width:fit-content;">MON ELEVE</h6>
+						{% endif %}
+						<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white " style="width:auto">
+							<tr>
+								<th scope="col">Nom Prenom</th>
+								<th scope="col">A payer</th>
+								<th scope="col"></th>
+							</tr>
+							{% for e in responsable.eleves %}
+								<tr>
+									<td>
+										<a href="{{ path('EleveConsulter', { 'id': e.id }) }}">{{e.nom}}
+											{{e.prenom}}</a>
+									</td>
+									{% set prix = 0 %}
+									{% for i in e.inscriptions %}
+										{% set prix = prix + i.cours.prix * i.nombreDePaiements %}
+									{% endfor %}
+									<td>{{ prix }}€</td>
+									<td>
+										<a href="{{ path('EleveSupprimer',{ 'id': e.id }) }}">
+											<button type="button" class="btn btn-outline-danger">Supprimer l'élève</button>
+										</a>
+									</td>
+								</tr>
+							</td>
+						</tr>
+					{% endfor %}
+				</table>
+				<a href="{{ path('payer',{ 'id': responsable.id })}}">
+					<button type="button" style=" background-color: white; color: black;" class="btn btn-success">Effectuer un paiement</button>
+				{% else %}
+					<p>Vous n'avez pas d'élèves</p>
+				{% endif %}
+			{% else %}
+				<p>Vous ne pouvez pas voir cela !</p>
+			{% endif %}
 
-{{ block("footer", "footer.html.twig") }}
+		</center>
+	</div>
+</div>{% endblock %}{{ block("footer", "footer.html.twig") }}

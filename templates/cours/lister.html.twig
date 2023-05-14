@@ -2,43 +2,60 @@
 
 
 {% block body %}
-      <h5>COURS DE CHAQUE SEMAINE</h5>
-      <div class="emploi-temps">
-        
-      <table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
+	<h5>COURS DE CHAQUE SEMAINE</h5>
+	<div class="emploi-temps center bg">
 
-            <thead>
-              <tr>
-                <th scope="col">Jour</th>
-                <th scope="col">Heure Début</th>
-                <th scope="col">Heure Fin</th>
-                <th scope="col">Prix</th>
-                <th scope="col">Cours</th>
-                <th scope="col">Professeur</th>
-                <th scope="col">Type cours</th>
-              </tr>
-            </thead>
-            <tbody>
-              {% for c in pCours %}
-                <tr>
-                    <td>{{c.dateCours}}</td>
-                    <td>{{c.heureDebut}}</td>
-                    <td>{{c.heureFin}}</td>
-                    <td>{{c.prix}}€</td>
-                    <td><a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{c.libelle}}</a></td>
-                    <td>{{c.professeur.nom}}</td>
-                    <td>{{c.typeCours.libelle}}</td>
-                </tr>
-              {% else %}
-                <tr>
-                <td>Aucun cours n'a été trouvé.</td>
-                </tr>
-              {% endfor %}
-            </tbody>
-        </table>
-        {% if is_granted('ROLE_ADMIN') %}  
-        <a href="{{ path('coursAjouter') }}"><button type="button" style=" background-color: white; color: black;" class="btn btn-outline-dark">Ajouter un Cours</button></a>
-        {% endif %}  
-      </div>
-{% endblock %}
-{{ block("footer", "footer.html.twig") }}
+		<table style="background-color:rgba(0, 0, 0, 0.5);" class="table table-bordered text-white ">
+
+			<thead>
+				<tr>
+					<th scope="col">Jour</th>
+					<th scope="col">Heure Début</th>
+					<th scope="col">Heure Fin</th>
+					<th scope="col">Prix</th>
+					<th scope="col">Cours</th>
+					<th scope="col">Professeur</th>
+					<th scope="col">Type cours</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for c in pCours %}
+					<tr>
+						<td>{{c.dateCours}}</td>
+						<td>{{c.heureDebut}}</td>
+						<td>{{c.heureFin}}</td>
+						<td>{{c.prix}}€</td>
+						<td>
+							<a href="{{ path('coursConsulter', { 'id': c.id }) }}">{{c.libelle}}</a>
+						</td>
+						<td>{{c.professeur.nom}}</td>
+						<td>{{c.typeCours.libelle}}</td>
+						{% if is_granted('ROLE_ADMIN') %}
+							<td>
+								<a href="{{ path('coursSupprimer', { 'id': c.id }) }}">
+									<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-danger">Supprimer</button>
+								</a>
+							</td>
+						{% endif %}
+					</tr>
+				{% else %}
+					<tr>
+						<td>Aucun cours n'a été trouvé.</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</tbody>
+	</table>
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{ path('coursAjouter') }}">
+			<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-dark">Ajouter un Cours</button>
+		</a>
+		<a href="{{ path('EleveCoursAjouter') }}">
+			<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-dark">Inscrire un eleve</button>
+		</a>
+	{% elseif is_granted('ROLE_ELEVE') %}
+		<a href="{{ path('EleveCoursAjouter') }}">
+			<button type="button" style=" background-color: white; color: black;" class="btn btn-outline-dark">S'inscrire à un cours</button>
+		</a>
+	{% endif %}
+</div>{% endblock %}{{ block("footer", "footer.html.twig") }}

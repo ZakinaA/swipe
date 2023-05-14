@@ -1,8 +1,8 @@
 {{ block('header', 'header.html.twig')}}
 {% block body %}
-		<h5>CLASSE INSTRUMENT</h5>
-		<div class="emploi-temps">
-			<table style="background-color:rgba(0, 0, 0, 0.5);" class='table table-bordered text-white'>
+	<h5>CLASSE INSTRUMENT</h5>
+	<div class="emploi-temps center bg">
+		<table style="background-color:rgba(0, 0, 0, 0.5);" class='table table-bordered text-white'>
 
 			<tr>
 				<td>Libelle</td>
@@ -10,15 +10,17 @@
 
 			{% for i in pclasseInstrument %}
 
-			<tr>
-				<td><a href="{{ path('instrumentListerTypeByID', { 'id': i.id }) }}">{{ i.libelle }}</a></td>
-				
-	{% else %}
-			<tr>
-				<td>Aucun instrument n'a été trouvé.</td>
-			</tr>
-	{% endfor %}
-</table>
-</div>
-{% endblock %}
-{{ block('footer', 'footer.html.twig') }}
+				<tr>
+					<td>
+						<a href="{{ path('instrumentListerTypeByID', { 'id': i.id }) }}">{{ i.libelle }}</a>
+					</td>
+
+				{% else %}
+					<tr>
+						<td>Aucun instrument n'a été trouvé.</td>
+					</tr>
+				{% endfor %}
+			</table>
+		</div>
+	{% endblock %}
+	{{ block('footer', 'footer.html.twig') }}

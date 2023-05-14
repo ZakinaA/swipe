@@ -1,10 +1,10 @@
 {{ block("header", "header.html.twig") }}
-{# templates/emprunt/ajouter.html.twig #}
 <div class="emploi-temps center bg">
 	{{ form_start(form) }}
-	{{ form_widget(form) }}
+	{{ form_row(form.nombre_de_paiements) }}
+	{{ form_row(form.eleve) }}
+	{{ form_row(form.cours) }}
 	<button class="btn btn-primary" style=" background-color: white; color: black;" type="submit">Ajouter</button>
 	{{ form_end(form) }}
-
 </div>
 {{ block("footer", "footer.html.twig") }}

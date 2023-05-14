@@ -7,20 +7,16 @@
 <center>
 	<h1>BIENVENUE</h1>
 
-<div >
 	<div>
-		<div >
-			<div class="col-md-6" style="color:black; background-color:rgba(255,255,255,0.5); padding:10px; margin-top:200px; border-radius: 10px;">
-				<h1>Cours de musique
-					<br>et de chant</h1>
-				<h2 class="--black">à domicile</h2>
-				<p class="">Des cours flexibles et dynamiques avec les meilleurs professeurs de musique</p>
-				<a href="{{ path('coursLister') }}" role="button" class="btn btn-primary btn-dark ">Plus d'infos</a>
+		<div>
+			<div>
+				<div class="col-md-6" style="color:black; background-color:rgba(255,255,255,0.5); padding:10px; margin-top:200px; border-radius: 10px;">
+					<h1>Cours de musique
+						<br>et de chant à domicile</h1>
+					<p class="">Des cours flexibles et dynamiques avec les meilleurs professeurs de musique</p>
+					<a href="{{ path('coursLister') }}" role="button" class="btn btn-primary btn-dark ">Plus d'infos</a>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
-</center>
-
-{% endblock %}
-{{ block("footer", "footer.html.twig") }}
+</center>{% endblock %}{{ block("footer", "footer.html.twig") }}

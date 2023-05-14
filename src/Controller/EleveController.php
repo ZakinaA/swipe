@@ -12,6 +12,7 @@ use App\Entity\Inscription;
 use App\Entity\Compte;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
+use App\Form\EleveType;
 
 class EleveController extends AbstractController
 {
@@ -23,50 +24,53 @@ class EleveController extends AbstractController
         ]);
     }
 
-    public function ML(ManagerRegistry $doctrine){
-		return $this->render('mentionsLegales.html.twig');
-	}
+    public function ML(ManagerRegistry $doctrine)
+    {
+        return $this->render('mentionsLegales.html.twig');
+    }
 
-    public function PC(ManagerRegistry $doctrine){
-		return $this->render('politiqueCo.html.twig');
-	}
+    public function PC(ManagerRegistry $doctrine)
+    {
+        return $this->render('politiqueCo.html.twig');
+    }
 
-    public function consulterEleve(ManagerRegistry $doctrine, int $id){
+    public function consulterEleve(ManagerRegistry $doctrine, int $id)
+    {
 
-		$eleve= $doctrine->getRepository(Eleve::class)->find($id);
-        $cours= $doctrine->getRepository(Cours::class)->findAll();
+        $eleve = $doctrine->getRepository(Eleve::class)->find($id);
+        $cours = $doctrine->getRepository(Cours::class)->findAll();
 
-		if (!$eleve) {
-			throw $this->createNotFoundException(
-            'Aucun eleve trouvé avec le numéro '.$id
-			);
-		}
-		return $this->render('eleve/consulter.html.twig', [
+        if (!$eleve) {
+            throw $this->createNotFoundException(
+                'Aucun eleve trouvé avec le numéro ' . $id
+            );
+        }
+        return $this->render('eleve/consulter.html.twig', [
             'eleve' => $eleve,
-            'cours' => $cours,]);
+            'cours' => $cours,
+        ]);
+    }
 
-	}
+    public function supprimerEleve(ManagerRegistry $doctrine, int $id)
+    {
 
-    public function supprimerEleve(ManagerRegistry $doctrine, int $id){
-
-        $eleve= $doctrine->getRepository(Eleve::class)->find($id);
+        $eleve = $doctrine->getRepository(Eleve::class)->find($id);
         $inscrire = $doctrine->getRepository(Inscription::class)->findByEleve($id);
         $emprunter = $doctrine->getRepository(Emprunter::class)->findByEleve($id);
         $compte = $doctrine->getRepository(Compte::class)->findOneByEleve($id);
 
-        if (!$eleve){
+        if (!$eleve) {
             throw $this->createNotFoundException('Aucun élève trouvé avec cet id !');
-        }
-        else{
+        } else {
             $entityManager = $doctrine->getManager();
-            if ($inscrire){
-                for($i=0;$i<count($inscrire);$i++){
+            if ($inscrire) {
+                for ($i = 0; $i < count($inscrire); $i++) {
                     $entityManager->remove($inscrire[$i]);
                     $entityManager->flush();
                 }
             }
-            if ($emprunter){
-                for($i=0;$i<count($emprunter);$i++){
+            if ($emprunter) {
+                for ($i = 0; $i < count($emprunter); $i++) {
                     $entityManager->remove($emprunter[$i]);
                     $entityManager->flush();
                 }
@@ -78,6 +82,31 @@ class EleveController extends AbstractController
             $entityManager->remove($eleve);
             $entityManager->flush();
             return $this->redirectToRoute('route_accueil');
+        }
+    }
+
+    public function modifier(ManagerRegistry $doctrine, $id, Request $request)
+    {
+
+        //récupération de le eleve dont l'id est passé en paramètre
+        $eleve = $doctrine->getRepository(Eleve::class)->find($id);
+
+        if (!$eleve) {
+            throw $this->createNotFoundException('Aucun eleve trouvé avec le numéro ' . $id);
+        } else {
+            $form = $this->createForm(EleveType::class, $eleve);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                $eleve = $form->getData();
+                $entityManager = $doctrine->getManager();
+                $entityManager->persist($eleve);
+                $entityManager->flush();
+                return $this->render('eleve/consulter.html.twig', ['eleve' => $eleve,]);
+            } else {
+                return $this->render('eleve/modifier.html.twig', array('form' => $form->createView(),));
+            }
         }
     }
 }

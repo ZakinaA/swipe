@@ -21,12 +21,16 @@ class EleveType extends AbstractType
     {
         $builder
 
-            ->add('nom',TextType::class)
-            ->add('prenom',TextType::class)
-
-
-
-        ;
+            ->add('nom', TextType::class)
+            ->add('prenom', TextType::class)
+            ->add(
+                'dateNaiss',
+                DateType::class,
+                [
+                    'widget' => 'single_text',
+                    'format' => 'yyyy-MM-dd',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

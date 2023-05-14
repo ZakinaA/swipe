@@ -4,31 +4,28 @@
 {# ... #}
 
 
-
 {% block body %}
-{{ block("header", "header.html.twig") }}
-
-    
-
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-<div class="form" style="text-shadow: 2px 0 #000;" >
-<h1>Connexion</h1>
-    <form action="{{ "index" }}" method="post">
-        <label for="username">Email :</label>
-        <input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
-
-        <label for="password">Mot de passe :</label>
-        <input class="form-control" type="password" id="password" name="_password">
-
-         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+	{{ block("header", "header.html.twig") }}
 
 
-        <input type="hidden" name="_target_path" value="/accueil"></br>
+	{% if error %}
+		<div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+	{% endif %}
+	<h1>Connexion</h1>
+	<div class="form center bg" style="font-weight: bold;">
+		<form action="{{ "index" }}" method="post">
+			<label for="username">Email :</label>
+			<input class="form-control" type="text" id="username" name="_username" value="{{ last_username }}">
 
-        <button class="btn btn-primary" style=" background-color: white; color: black;" type="submit">Connexion</button>
-    </form>
+			<label for="password">Mot de passe :</label>
+			<input class="form-control" type="password" id="password" name="_password">
+
+			<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+
+			<input type="hidden" name="_target_path" value="/accueil"></br>
+
+		<button class="btn btn-primary" style=" background-color: white; color: black;" type="submit">Connexion</button>
+	</form>
 </div>
-{{ block("footer", "footer.html.twig") }}
-{% endblock %}
+{{ block("footer", "footer.html.twig") }}{% endblock %}

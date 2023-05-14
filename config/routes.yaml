@@ -25,6 +25,10 @@ EleveSupprimer:
     path: /eleve/supprimer/{id}
     controller: App\Controller\EleveController::supprimerEleve
 
+eleveModifier:
+    path: /eleve/modifier/{id}
+    controller: App\Controller\EleveController::modifier
+
 #Route Instrument
 
 instrumentListerType:
@@ -72,11 +76,19 @@ ResponsableConsulter:
     path: /responsable/consulter/{id}
     controller: App\Controller\ResponsableController::consulter
 
+responsableModifier:
+    path: /responsable/modifier/{id}
+    controller: App\Controller\ResponsableController::modifier
+
 
 #Cours
 coursLister:
     path: /cours/lister
     controller: App\Controller\CoursController::lister
+
+coursSupprimer:
+    path: /cours/supprimer/{id}
+    controller: App\Controller\CoursController::supprimer
 
 coursConsulter:
     path: /cours/consulter/{id}
@@ -94,6 +106,9 @@ EleveCoursSupprimer:
     path: /cours/supprimer/{id}
     controller: App\Controller\CoursController::supprimerCoursEleve
 
+EleveCoursAjouter:
+    path: /cours/eleve/ajouter
+    controller: App\Controller\CoursController::ajouterCoursEleve
 
 # Login
 
@@ -123,6 +138,10 @@ ProfesseurConsulter:
     path: /professeur/consulter/{id}
     controller: App\Controller\ProfesseurController::consulterProfesseur
 
+professeurModifier:
+    path: /professeur/modifier/{id}
+    controller: App\Controller\ProfesseurController::modifier
+
 
 
 #Emprunt
@@ -137,6 +156,10 @@ empruntConsulter:
 empruntAjouter:
     path: /emprunt/ajouter/{id}
     controller: App\Controller\EmpruntController::ajouter
+
+empruntSupprimer:
+    path: /emprunt/supprimer/{id}
+    controller: App\Controller\EmpruntController::supprimer
 
 #Connecté :
 ConnectéConsulter:

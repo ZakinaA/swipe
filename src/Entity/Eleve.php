@@ -22,9 +22,6 @@ class Eleve
     #[ORM\Column(length: 50)]
     private ?string $prenom = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
-    private ?\DateTimeInterface $date_naiss = null;
-
     #[ORM\ManyToOne(inversedBy: 'eleves')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Responsable $responsable = null;
@@ -37,6 +34,9 @@ class Eleve
 
     #[ORM\OneToMany(mappedBy: 'eleve', targetEntity: Inscription::class)]
     private Collection $inscriptions;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $dateNaiss = null;
 
     public function __construct()
     {
@@ -69,18 +69,6 @@ class Eleve
     public function setPrenom(string $prenom): self
     {
         $this->prenom = $prenom;
-
-        return $this;
-    }
-
-    public function getDate_Naiss(): ?\DateTimeInterface
-    {
-        return $this->date_naiss;
-    }
-
-    public function setDate_Naiss(?\DateTimeInterface $date_naiss): self
-    {
-        $this->date_naiss = $date_naiss;
 
         return $this;
     }
@@ -165,6 +153,18 @@ class Eleve
                 $inscription->setEleve(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getDateNaiss(): ?\DateTimeInterface
+    {
+        return $this->dateNaiss;
+    }
+
+    public function setDateNaiss(?\DateTimeInterface $dateNaiss): self
+    {
+        $this->dateNaiss = $dateNaiss;
 
         return $this;
     }

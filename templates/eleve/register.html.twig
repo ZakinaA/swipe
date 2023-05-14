@@ -1,23 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-{{ block("header", "header.html.twig") }}
+	{{ block("header", "header.html.twig") }}
 
 
-
-    <h1>Création d'un élève</h1>
-<div style="text-shadow: 2px 0 #000;">
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.mail) }}
-        {{ form_row(registrationForm.plainPassword, {
+	<h1>Création d'un élève</h1>
+	<div class="emploi-temps center bg" style="text-align: left;">
+		{{ form_start(registrationForm) }}
+		{{ form_row(registrationForm.mail) }}
+		{{ form_row(registrationForm.plainPassword, {
             label: 'Password'
         }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+		{{ form_row(registrationForm.eleve.nom) }}
+		{{ form_row(registrationForm.eleve.prenom) }}
+		{{ form_row(registrationForm.eleve.dateNaiss) }}
+		{{ form_row(registrationForm.agreeTerms) }}
 
-        <button type="submit" class="btn" style=" background-color: white; color: black;">Register</button>
-    {{ form_end(registrationForm) }}
-    {{ block("footer", "footer.html.twig") }}
-    </div>
-{% endblock %}
+		<button type="submit" class="btn" style=" background-color: white; color: black;">Register</button>
+		{{ form_end(registrationForm) }}</br>
+	{{ block("footer", "footer.html.twig") }}
+</div>{% endblock %}
