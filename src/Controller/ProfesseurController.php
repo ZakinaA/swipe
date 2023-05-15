@@ -58,7 +58,9 @@ class ProfesseurController extends AbstractController
                 $entityManager = $doctrine->getManager();
                 $entityManager->persist($professeur);
                 $entityManager->flush();
-                return $this->render('professeur/consulter.html.twig', ['professeur' => $professeur,]);
+                $cours = $doctrine->getRepository(Cours::class)->findByProfesseur($id);
+                return $this->render('professeur/consulter.html.twig', ['professeur' => $professeur,
+                'cours' => $cours,]);
             } else {
                 return $this->render('professeur/modifier.html.twig', array('form' => $form->createView(),));
             }
